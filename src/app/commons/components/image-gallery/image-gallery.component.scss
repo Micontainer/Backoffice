@@ -1,0 +1,45 @@
+:host {}
+
+#image-gallery {
+    .card {
+        .card-body {
+            .card-controls>.row {
+                // Im not so sure about doing this due to properly template development
+                align-items: center;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    .modal-header {
+        h1 {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: center;
+    }
+
+    .images-box {
+        .image-box {
+            display: flex;
+            justify-content: center;
+
+            img {
+                object-fit: contain;
+                max-width: 200px;
+                max-height: 200px;
+            }
+
+            margin: 5px;
+        }
+    }
+
+    .used-image {
+        margin-right: auto;
+    }
+}

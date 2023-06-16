@@ -1,0 +1,74 @@
+<section id="branch-area">
+  <form [formGroup]="form" autocomplete="off" (submit)="submitEventHandler(form.value)">
+    <app-simple-card headerText="Coeficiente de Area">
+      <div class="sc-row">
+        <label for="areaCoefficientInput" class="row-label">
+          <div class="label-text">
+            <span>Área (m2)</span>
+          </div>
+          <div class="label-hinttext">Área expresada en m2.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="areaCoefficientInput" class="form-control" formControlName="areaCoefficient">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="valueInput" class="row-label">
+          <div class="label-text">
+            <span>Valor</span>
+          </div>
+          <div class="label-hinttext">Valor de Base: <span color="primary">{{branchCoefficient | currency}}</span></div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input appCurrencyInput type="tel" id="valueInput" class="form-control"
+                [value]="valueControl.value | currency" readonly>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn" color="primary" [disabled]="form.invalid">Crear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+  <app-simple-tablex [columns]="columns" *ngIf="coefficients">
+    <!-- <ng-template #simpleHeader>
+      <h3 class="table-title">this is the table header</h3>
+    </ng-template> -->
+    <ng-template #headers>
+      <ng-container *ngFor="let column of columns">
+        <div class="stx-header secondary">{{column.label}}</div>
+      </ng-container>
+    </ng-template>
+    <ng-template #rows>
+      <ng-container *ngFor="let row of coefficients">
+        <div class="stx-row">{{row.areaCoefficient}} m2</div>
+        <div class="stx-row">{{row.value | currency}}</div>
+        <div class="stx-row">
+          <div class="stx-row-action">
+            <button class="btn btn-xs stx-row-action" color="outline-danger"
+              (click)="deleteAreaCoefficient(row.uid)">Borrar</button>
+          </div>
+        </div>
+      </ng-container>
+    </ng-template>
+    <!-- <ng-template #simpleFooter>
+      <h3>this is the table footer</h3>
+    </ng-template> -->
+  </app-simple-tablex>
+</section>

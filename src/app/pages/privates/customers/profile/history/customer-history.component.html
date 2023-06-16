@@ -1,0 +1,18 @@
+<section id="customer-history">
+  <app-simple-tablex [columns]="columns" *ngIf="bookings.length; else noContent">
+    <ng-template #headers>
+      <ng-container *ngFor="let column of columns">
+        <div class="stx-header secondary">{{column.label}}</div>
+      </ng-container>
+    </ng-template>
+    <ng-template #rows>
+      <ng-container *ngFor="let row of bookings">
+        <div class="stx-row">{{row.storage}}</div>
+        <div class="stx-row">{{row.storageCoefficient}}</div>
+      </ng-container>
+    </ng-template>
+  </app-simple-tablex>
+  <ng-template #noContent>
+    <app-no-content-component></app-no-content-component>
+  </ng-template>
+</section>

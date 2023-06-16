@@ -1,0 +1,11 @@
+:host {
+
+}
+
+@mixin Dummie {
+  min-width: 0;
+}
+
+#branch-profile {
+  @include Dummie();
+}

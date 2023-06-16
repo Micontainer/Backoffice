@@ -1,0 +1,27 @@
+:host { }
+
+@mixin Dummie {
+  min-width: 0;
+}
+
+#branch-basic {
+
+  .prediction-list {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0px 5px 5px rgb(0 0 0 / 50%);
+    border-radius: 4px;
+
+    .prediction-item {
+      transition: all .3s;
+      --background: #ffffff;
+      background: var(--background);
+      cursor: pointer;
+
+      &:hover {
+        --background: #dddddd;
+      }
+    }
+  }
+}

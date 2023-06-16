@@ -1,0 +1,47 @@
+:host {
+  --severity-color: var(--color-secondary);
+}
+
+#app-notification {
+
+  .notification-item {
+    padding: {
+      top: .5rem;
+      bottom: .5rem;
+      left: .8rem;
+      right: .8rem;
+    }
+    border-left: 4px solid var(--severity-color);
+    transition: all .5s;
+
+    .notification-title {
+      margin-bottom: 0;
+    }
+
+    .notification-message {
+      font-size: var(--notification-message-font-size);
+      margin-bottom: 0;
+    }
+
+    &.default {
+      --severity-color: var(--color-secondary);
+    }
+
+    &.success {
+      --severity-color: var(--color-success);
+    }
+
+    &.warning {
+      --severity-color: var(--color-warning);
+    }
+
+    &.danger {
+      --severity-color: var(--color-danger);
+    }
+
+    &:hover {
+      background-color: var(--color-light-shade);
+      cursor: pointer;
+    }
+  }
+}

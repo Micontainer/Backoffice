@@ -1,0 +1,47 @@
+<section id="building-levels">
+  <div class="page-header">
+    <button
+      class="btn"
+      color="secondary"
+      flex-center
+      routerLink="/admin/settings/branch-offices/spaces"
+      [queryParams]="{
+        page: 'basic',
+        ref: branchUID,
+        'ref.building': buildingUID,
+        'ref.level': levelUID
+      }"
+      queryParamsHandling="merge"
+    >
+      <span class="material-icons">add</span>
+      Crear Espacio
+    </button>
+  </div>
+  <app-simple-table
+    [columns]="5"
+  >
+    <div class="st-header">Nombre</div>
+    <div class="st-header">Ancho</div>
+    <div class="st-header">Altura</div>
+    <div class="st-header">Profundidad</div>
+    <div class="st-header">Metros2</div>
+    <ng-container *ngFor="let row of storages">
+      <div class="st-row">
+        <a
+          routerLink="/admin/settings/branch-offices/spaces"
+          [queryParams]="{
+            page: 'basic',
+            'ref.level': levelUID,
+            'ref.space': row.uid
+          }"
+          queryParamsHandling="merge"
+          color="primary"
+        >{{row.description}}</a>
+      </div>
+      <div class="st-row">{{row.width}}</div>
+      <div class="st-row">{{row.height}}</div>
+      <div class="st-row">{{row.depth}}</div>
+      <div class="st-row">{{row.dimensionsM2}}</div>
+    </ng-container>
+  </app-simple-table>
+</section>

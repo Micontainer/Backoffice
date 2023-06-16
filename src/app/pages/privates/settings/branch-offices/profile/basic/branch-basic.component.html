@@ -1,0 +1,133 @@
+<section id="branch-basic">
+  <form [formGroup]="form" autocomplete="off" (ngSubmit)="submitEventHandler(form.value)">
+    <app-simple-card headerText="Datos Básicos">
+      <div class="sc-row">
+        <label for="descriptionInput" class="row-label">
+          <div class="label-text">
+            <span>Nombre</span>
+          </div>
+          <div class="label-hinttext">El nombre para la sucursal</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="descriptionInput" class="form-control" formControlName="description"
+                text-uppercase>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="addressInput" class="row-label">
+          <div class="label-text">
+            <span>Ubicación</span>
+          </div>
+          <div class="label-hinttext">La ubicación de la sucursal</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input #addressInput type="text" search-place id="addressInput" clear
+              class="form-control" [(ngModel)]="address"
+                [ngModelOptions]="{ standalone: true }" (placeEvent)="setPlaceEventHandler($event)"
+                (change)="clearInputPlaceEventHandler()">
+              <div class="prediction-list" *ngIf="toggleList">
+                <ul class="list-group">
+                  <ng-container *ngFor="let place of placesCollection">
+                    <li class="list-group-item prediction-item" aria-current="true"
+                      (click)="selectPlaceEventHandler(place)">
+                      <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{place.mainText}}</h5>
+                      </div>
+                      <small>{{place.secondaryText}}</small>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
+              <div class="input-trailing-items">
+                <button type="button" class="trailing-button" [hidden]="!address" (click)="address = ''">
+                  <span class="material-icons">close</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="coefficientInput" class="row-label">
+          <div class="label-text">
+            <span>Coeficiente</span>
+          </div>
+          <div class="label-hinttext">Utilizado para el cálculo del precio de los espacios</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                  appCurrencyInput
+                  (change)="valueControlChange($event)"
+                  [value]="coefficientControl.value | currency"
+                  type="tel" id="coefficientInput" class="form-control">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row" *adminsOnly>
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn" color="primary" [disabled]="form.invalid">{{buttonText}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <div *adminsOnly>
+      <app-simple-card headerText="Administrar Sucursal" *ngIf="isEdition">
+        <div class="sc-row">
+          <label for="flexSwitchCheckDefault" class="row-label">
+            <div class="label-text">
+              <span>Desactivar</span>
+            </div>
+            <div class="label-hinttext">Al estar inactiva, la sucursal no podrá ser vista, así como tampoco ninguno de
+              sus componentes</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" [(ngModel)]="checkedModel"
+                    [ngModelOptions]="{standalone: true}" (change)="disableBranchEventHandler()">
+                  <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label class="row-label">
+            <div class="label-text">
+              <span>Eliminar</span>
+            </div>
+            <div class="label-hinttext">
+              <span>Eliminar la sucursal y todos los datos relacionados</span>
+              <br>
+              <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <button type="button" class="btn" color="danger" (click)="deleteBranchEventHandler()">Eliminar
+                  Sucursal</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,25 @@
+<section id="invoice-component">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-2">
+      <app-simple-menu
+        headerText="Facturas"
+      >
+        <ng-template #optionsTemplate>
+          <a
+            *ngFor="let option of options"
+            href="javascript:void(0)"
+            class="option-link list-group-item list-group-item-action"
+            [routerLink]="option.link"
+            [queryParams]="{page: option.component}"
+            queryParamsHandling="merge"
+            color="primary"
+            [ngClass]="{'active': option.selected}"
+          >{{option.label}}</a>
+        </ng-template>
+      </app-simple-menu>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+      <ng-template #routerOutlet></ng-template>
+    </div>
+  </div>
+</section>

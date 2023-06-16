@@ -1,0 +1,44 @@
+<section id="app-data-list">
+  <div class="list-wrapper">
+    <div class="list-header">
+      <ng-content select="[header]"></ng-content>
+    </div>
+    <div class="list-body">
+      <div class="list-row">
+        <div class="description">
+          <h5 class="mb-0">Lunes a Viernes</h5>
+          <p class="mb-0">9:00 a 20:00</p>
+        </div>
+        <div class="actions">
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle btn-xs btn-action"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <span class="material-icons">more_vert</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li>
+                <button class="dropdown-item action-link">
+                  <span class="material-icons item-icon">edit</span>
+                  <span class="item-text">Editar</span>
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item action-link">
+                  <span class="material-icons item-icon text-danger">delete</span>
+                  <span class="item-text">Eliminar</span>
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-footer">
+      <ng-content select="[footer]"></ng-content>
+    </div>
+  </div>
+</section>

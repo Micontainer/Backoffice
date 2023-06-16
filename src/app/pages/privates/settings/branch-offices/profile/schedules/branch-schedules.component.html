@@ -1,0 +1,128 @@
+<section id="branch-schedules">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+    (ngSubmit)="submitEventHandler(form.value)"
+  >
+    <app-simple-card
+      headerText="Configuración de Horarios"
+    >
+      <div class="sc-row">
+        <label for="descriptionInput" class="row-label">
+          <div class="label-text">
+            <span>Descripción</span>
+          </div>
+          <div class="label-hinttext">Días laborales para la Sucursal.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="descriptionInput"
+                class="form-control"
+                formControlName="description"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="hourFromInput" class="row-label">
+          <div class="label-text">
+            <span>Hora Desde</span>
+          </div>
+          <div class="label-hinttext">Hora de inicio de la jornada laboral del día.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="time"
+                id="hourFromInput"
+                class="form-control"
+                formControlName="hourFrom"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="hourToInput" class="row-label">
+          <div class="label-text">
+            <span>Hora Hasta</span>
+          </div>
+          <div class="label-hinttext">Hora de finalización de la jornada laboral.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="time"
+                id="hourToInput"
+                class="form-control"
+                formControlName="hourTo"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label">
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                class="btn"
+                color="primary"
+                [disabled]="form.invalid"
+              >Crear Horario</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+  <app-simple-table
+    [columns]="3"
+  >
+    <div class="st-header">Descripción</div>
+    <div class="st-header">Activa</div>
+    <div class="st-header">Acciones</div>
+    <ng-container *ngFor="let row of schedules">
+      <div class="st-row">
+        <div class="st-row-text">
+          <strong>{{row.description}}</strong>
+          <div class="st-row-hinttext">
+            <span>{{row.hourFrom}} a {{row.hourTo}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="st-row">
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="flexSwitchCheckDefault"
+            [checked]="(row.status === 'active')"
+            (change)="statusChangeEventHandler(row)"
+          >
+          <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+        </div>
+      </div>
+      <div class="st-row">
+        <button
+          class="btn btn-xs"
+          color="outline-danger"
+          (click)="deleteClickEventHandler(row)"
+        >
+          Eliminar
+        </button>
+      </div>
+    </ng-container>
+  </app-simple-table>
+</section>

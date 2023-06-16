@@ -1,0 +1,122 @@
+<section id="building-basic">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+    (ngSubmit)="submitEventHandler(form.value)"
+  >
+    <app-simple-card
+      headerText="Configuración de Edificios"
+    >
+      <div class="sc-row">
+        <label for="descriptionInput" class="row-label">
+          <div class="label-text">
+            <span>Nombre</span>
+          </div>
+          <div class="label-hinttext">El nombre para el Edificio</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="descriptionInput"
+                class="form-control"
+                formControlName="description"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="coefficientInput" class="row-label">
+          <div class="label-text">
+            <span>Coeficiente</span>
+          </div>
+          <div class="label-hinttext">Utilizado para el cálculo del precio de los espacios</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="number"
+                id="coefficientInput"
+                class="form-control"
+                formControlName="coefficient"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                class="btn"
+                color="primary"
+                [disabled]="form.invalid"
+              >Actualizar Edificio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <app-simple-card
+      headerText="Administrar Edificio"
+      *ngIf="isEdition"
+    >
+      <div class="sc-row">
+        <label for="flexSwitchCheckDefault" class="row-label">
+          <div class="label-text">
+            <span>Desactivar</span>
+          </div>
+          <div class="label-hinttext">Al estar inactivo, el edificio no podrá ser visto, así como tampoco ninguno de sus componentes</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="flexSwitchCheckDefault"
+                  [(ngModel)]="checkedModel"
+                  [ngModelOptions]="{standalone: true}"
+                  (change)="disableEventHandler()"
+                >
+                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label class="row-label">
+          <div class="label-text">
+            <span>Eliminar</span>
+          </div>
+          <div class="label-hinttext">
+            <span>Eliminar el edificio y todos los datos relacionados</span>
+            <br>
+            <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                type="button"
+                class="btn"
+                color="danger"
+                (click)="deleteEventHandler()"
+              >Eliminar Edificio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

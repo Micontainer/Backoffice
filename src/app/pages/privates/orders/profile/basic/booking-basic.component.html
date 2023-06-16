@@ -1,0 +1,246 @@
+<section id="app-booking-basic">
+    <form
+      [formGroup]="form"
+      autocomplete="off"
+      (ngSubmit)="submitEventHandler()"
+    >
+      <app-simple-card
+        headerText="Datos de inquilino"
+      >
+        <div class="sc-row" *ngIf="isEdition; else showSelection">
+          <label for="userEmailInput" class="row-label">
+            <div class="label-text">
+              <span>Email</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="text"
+                  id="userEmailInput"
+                  class="form-control"
+                  formControlName="userEmail"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ng-template #showSelection>
+          <div class="sc-row" *ngIf="customers.length; else addCustomer">
+            <label for="customerSelect" class="row-label">
+              <div class="label-text">
+                <span>Email</span>
+              </div>
+            </label>
+            <div class="row-column">
+              <div class="column-container">
+                <div class="control-wrapper">
+                  <select
+                      id="customerSelect"
+                      class="form-control"
+                      formControlName="customerSelection"
+                    >
+                    <option *ngFor="let option of customers" [value]="option.value">
+                      {{ option.label }}
+                    </option>
+                  </select>
+                  <div class="input-trailing-items"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #addCustomer>
+            <div class="sc-row">
+              <label for="customerSelect" class="row-label">
+                <div class="label-text">
+                  <span>Añadir cliente</span>
+                </div>
+              </label>
+              <div class="row-column">
+                <div class="column-container">
+                  <div class="control-wrapper">
+                    <button
+                      type="button"
+                      class="btn"
+                      color="primary"
+                      (click)="addCustomerEventHandler()"
+                    >Añadir cliente</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-template>
+      </app-simple-card>
+      <app-simple-card
+        headerText="Producto"
+      >
+        <div class="sc-row">
+          <label for="branchOfficeSelect" class="row-label">
+            <div class="label-text">
+              <span>Sucursal</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <select
+                    id="branchOfficeSelect"
+                    class="form-control"
+                    formControlName="branchOfficeSelection"
+                    (change)="branchOfficeChangeEventHandler()"
+                  >
+                  <option *ngIf="!validCollection(branchOffices)" [selected]="!validCollection(branchOffices)">No hay sucursales para seleccionar</option>
+                  <option *ngFor="let option of branchOffices" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="buildingSelect" class="row-label">
+            <div class="label-text">
+              <span>Edificio</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <select
+                    id="buildingSelect"
+                    class="form-control"
+                    formControlName="buildingSelection"
+                    (change)="buildingChangeEventHandler()"
+                  >
+                  <option *ngIf="!validCollection(buildings)" [selected]="!validCollection(buildings)">No hay edificios para seleccionar</option>
+                  <option *ngFor="let option of buildings" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="levelSelect" class="row-label">
+            <div class="label-text">
+              <span>Nivel</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <select
+                    id="levelSelect"
+                    class="form-control"
+                    formControlName="levelSelection"
+                    (change)="levelChangeEventHandler()"
+                  >
+                  <option *ngIf="!validCollection(levels)" [selected]="!validCollection(levels)">No hay niveles para seleccionar</option>
+                  <option *ngFor="let option of levels" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="storageSelect" class="row-label">
+            <div class="label-text">
+              <span>Espacio</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <select
+                    id="storageSelect"
+                    class="form-control"
+                    formControlName="storageSelection"
+                    (change)="storageChangeEventHandler()"
+                  >
+                  <option *ngIf="!validCollection(storages)" [selected]="!validCollection(storages)" value="">No hay espacios para seleccionar</option>
+                  <option *ngFor="let option of storages" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="priceInput" class="row-label">
+            <div class="label-text">
+              <span>Precio</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  (change)="valueControlChange($event)"
+                  [value]="priceControl.value | currency"
+                  type="tel"
+                  id="priceInput"
+                  class="form-control"
+                  readonly
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row" *ngIf="!(orderUID && bookingDone)">
+          <label for="dummieInput" class="row-label"></label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <button
+                  class="btn"
+                  color="primary"
+                  [disabled]="form.invalid"
+                >{{ submitFormLabel }}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+      <app-simple-card
+        headerText="Estado de órden"
+      >
+        <div class="sc-row">
+          <label for="statusSelect" class="row-label">
+            <div class="label-text">
+              <span>Estado</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                  <select
+                    id="statusSelect"
+                    class="form-control"
+                    formControlName="statusSelection"
+                    (change)="onStatusChangeEventHandler()"
+                  >
+                  <option *ngFor="let option of statusOptions" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+    </form>
+  </section>
+  

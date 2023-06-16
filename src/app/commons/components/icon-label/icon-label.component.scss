@@ -1,0 +1,36 @@
+:host {
+  --default-font-size: 16px;
+  --default-icon-size: 16px;
+  --default-align-items: center;
+  --default-justify-content: flex-start;
+}
+
+.icon-label {
+
+  .icon-label__wrapper {
+    display: flex;
+    align-items: var(--default-align-items);
+    justify-content: var(--default-justify-content);
+
+    &.flex-start {
+      align-items: flex-start;
+    }
+
+    &.justify-content-center {
+      --default-justify-content: center;
+    }
+
+    .icon-label__icon {
+      font-size: var(--default-icon-size);
+      margin-right: 8px;
+
+      &.normal-icon-size {
+        --default-icon-size: 24px;
+      }
+    }
+
+    .icon-label__text {
+      font-size: var(--default-font-size);
+    }
+  }
+}

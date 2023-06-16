@@ -1,0 +1,58 @@
+<section id="customer-user">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+  >
+    <app-simple-card
+      headerText="Configuración de Usuario"
+    >
+      <div class="sc-row">
+        <label for="userInput" class="row-label">
+          <div class="label-text">
+            <span>Email</span>
+          </div>
+          <div class="label-hinttext">Correo electrónico de acceso.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="email"
+                id="userInput"
+                class="form-control"
+                formControlName="email"
+                readonly
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label class="row-label">
+          <div class="label-text">
+            <span>Resetear Contraseña</span>
+          </div>
+          <div class="label-hinttext">
+            <span>Reinciar la contraseña del usuario, una nueva contraseña será enviada por correo.</span>
+            <br>
+            <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                type="button"
+                class="btn"
+                color="danger"
+                [disabled]="!customerUID"
+                (click)="resetEventHandler()"
+              >Resetear Contraseña</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

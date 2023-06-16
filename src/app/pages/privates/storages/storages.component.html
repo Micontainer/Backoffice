@@ -1,0 +1,76 @@
+<section id="app-storage">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="card" shadow="true">
+        <div class="card-body">
+          <div class="card-controls">
+            <div class="row">
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h5 class="card-title">Tablero de Reservas</h5>
+              </div>
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6" align="end">
+                <div class="form-group">
+                  <select
+                    id="branchSelect"
+                    class="form-control"
+                    [ngModelOptions]="{standalone: true}"
+                    [(ngModel)]="branchModel"
+                    (change)="branchChangeEventHandler($event)"
+                  >
+                    <option value="0">Selecciona una Sucursal</option>
+                    <ng-container *ngFor="let branch of branchesOptions">
+                      <option [value]="branch.value">{{branch.label}}</option>
+                    </ng-container>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-container *ngIf="hasSelectedBranch; else nonBranchTemplate">
+            <ng-container
+              *ngFor="let building of buildingsBoard"
+            >
+              <div class="row">
+                <div class="col-12">
+                  <div class="summary">
+                    <ul class="summary-states">
+                      <ng-container *ngFor="let colorState of colorStates">
+                        <li>
+                          <div class="summary-info">
+                            <div
+                              class="color-box"
+                              [attr.status]="colorState.state"
+                            ></div>
+                            <p class="mb-0">{{colorState.label}}</p>
+                          </div>
+                        </li>
+                      </ng-container>
+                    </ul>
+                  </div>
+                  <div class="separator"></div>
+                </div>
+              </div>
+              <app-booking-board
+                [source]="building"
+              ></app-booking-board>
+            </ng-container>
+          </ng-container>
+          <ng-template #nonBranchTemplate>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="message-container">
+                  <div class="wrapper">
+                    <div class="message">
+                      <h1 id="mainText" class="mb-0">Selecciona una Sucursal</h1>
+                      <p class="mb-0 text-muted">Para ver las reservas en tiempo real</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

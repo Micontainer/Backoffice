@@ -1,0 +1,268 @@
+<section id="user-basic">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+    (ngSubmit)="submitEventHandler(form.value)"
+  >
+    <app-simple-card
+      headerText="Datos Básicos"
+    >
+      <div class="sc-row">
+        <label for="nameInput" class="row-label">
+          <div class="label-text">
+            <span>Nombre completo</span>
+          </div>
+          <div class="label-hinttext">El nombre de la persona</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="nameInput"
+                class="form-control"
+                text-uppercase
+                formControlName="name"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="documentInput" class="row-label">
+          <div class="label-text">
+            <span>Documento</span>
+          </div>
+          <div class="label-hinttext">Número de documento, DNI o CUIT</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="documentInput"
+                class="form-control"
+                text-uppercase
+                formControlName="document"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <app-simple-card
+      headerText="Datos de sistema"
+    >
+      <div class="sc-row">
+        <label for="stateSelect" class="row-label">
+          <div class="label-text">
+            <span>Rol</span>
+          </div>
+          <div class="label-hinttext">Rol del usuario</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <select
+                class="form-select"
+                id="stateSelect"
+                aria-label="State Selection"
+                formControlName="roleSelection"
+              >
+                <ng-container *ngFor="let option of roles">
+                  <option [value]="option.value">{{option.label}}</option>
+                </ng-container>
+              </select>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row" *ngIf="branchOffices.length && roleOperatorSelected">
+        <label for="branchOffice" class="row-label">
+          <div class="label-text">
+            <span>Sucursal</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <label class="mx-2" *ngFor="let branch of branchOffices">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [formControlName]="branch.value"
+                >
+                {{ branch.label }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <app-simple-card
+      headerText="Datos de Contacto"
+    >
+      <div class="sc-row">
+        <label for="emailInput" class="row-label">
+          <div class="label-text">
+            <span>Email</span>
+          </div>
+          <div class="label-hinttext">Dirección de correo electrónico</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="email"
+                id="emailInput"
+                class="form-control"
+                formControlName="email"
+                [readOnly]="isEdition"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="phoneInput" class="row-label">
+          <div class="label-text">
+            <span>Teléfono</span>
+          </div>
+          <div class="label-hinttext">Número de teléfono</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="phoneInput"
+                class="form-control"
+                text-uppercase
+                formControlName="phone"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="addressInput" class="row-label">
+          <div class="label-text">
+            <span>Dirección</span>
+          </div>
+          <div class="label-hinttext">Dirección completa</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="text"
+                id="addressInput"
+                class="form-control"
+                text-uppercase
+                formControlName="address"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                class="btn"
+                color="primary"
+                [disabled]="!validForm"
+              >{{buttonText}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+  <app-simple-card
+    headerText="Administrar Usuario"
+    *ngIf="isEdition"
+  >
+    <div class="sc-row">
+      <label for="flexSwitchCheckDefault" class="row-label">
+        <div class="label-text">
+          <span>Desactivar</span>
+        </div>
+        <div class="label-hinttext">Al estar inactivo, el usuario no podrá acceder al sistema.</div>
+      </label>
+      <div class="row-column">
+        <div class="column-container">
+          <div class="control-wrapper">
+            <div class="form-check form-switch">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="flexSwitchCheckDefault"
+                [(ngModel)]="isDeactivatedCheckModel"
+                [ngModelOptions]="{standalone: true}"
+                (change)="disableEventHandler()"
+              >
+              <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-row">
+      <label class="row-label">
+        <div class="label-text">
+          <span>Resetear Contraseña</span>
+        </div>
+        <div class="label-hinttext">
+          <span>Reinciar la contraseña del usuario, una nueva contraseña será enviada por correo.</span>
+          <br>
+          <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+        </div>
+      </label>
+      <div class="row-column">
+        <div class="column-container">
+          <div class="control-wrapper">
+            <button
+              type="button"
+              class="btn"
+              color="danger"
+              (click)="resetEventHandler()"
+            >Resetear Contraseña</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sc-row">
+      <label class="row-label">
+        <div class="label-text">
+          <span>Eliminar</span>
+        </div>
+        <div class="label-hinttext">
+          <span>Eliminar el usuario y todos los datos relacionados</span>
+          <br>
+          <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+        </div>
+      </label>
+      <div class="row-column">
+        <div class="column-container">
+          <div class="control-wrapper">
+            <button
+              type="button"
+              class="btn"
+              color="danger"
+              (click)="deleteEventHandler()"
+            >Eliminar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-simple-card>
+</section>

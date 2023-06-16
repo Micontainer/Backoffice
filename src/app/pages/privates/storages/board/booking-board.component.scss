@@ -1,0 +1,78 @@
+:host { }
+
+
+@mixin Dummie {
+  min-width: 0;
+}
+
+#app-booking-board {
+  @include Dummie;
+
+  #board-container {
+    @include Dummie;
+
+    #board-body {
+      @include Dummie;
+
+      .building {
+        width: 320px;
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem;
+        background: rgba(0,0,0,.03);
+        border-radius: 8px;
+
+        .level {
+          width: 100%;
+          display: grid;
+          grid-template-columns: repeat(4, 60px);
+          padding-top: 2.25rem;
+          position: relative;
+
+          .header {
+            position: absolute;
+            left: 5px;
+            top: 5px;
+          }
+
+          .storage {
+            height: 35px;
+            width: 35px;
+            margin: 3px;
+            border: 2px solid #444451;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            --background-color: transparent;
+            background: var(--background-color);
+            color: #ffffff;
+            font-weight: 600;
+
+            // Rojo: Ocupado
+            &[status="busy"] {
+              --background-color: var(--color-danger);
+            }
+            // Azul: Reservado para fecha XX/XX/XXX
+            &[status="reserved"] {
+              --background-color: var(--color-blue);
+            }
+            // Verde: Disponibles
+            &[status="available"] {
+              --background-color: var(--color-primary);
+            }
+            // Amarillo: Pendientes
+            &[status="pending"] {
+              --background-color: var(--color-warning);
+            }
+            // Gris: No disponible (decisión de los CEO de la Mi Container)
+            &[status="unavailable"] {
+              --background-color: var(--color-medium);
+            }
+          }
+        }
+      }
+    }
+  }
+}

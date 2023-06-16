@@ -1,0 +1,24 @@
+#shapes {
+  .card {
+    height: 100%;
+    .card-body {
+      .section-header {
+        display: grid;
+        grid-template-columns: 50% 50%;
+
+        .header-column {
+          display: flex;
+          align-items: center;
+
+          &.start {
+            justify-content: flex-start;
+          }
+
+          &.end {
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+}

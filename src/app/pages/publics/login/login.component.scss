@@ -1,0 +1,20 @@
+:host {
+    .control-wrapper {
+      position: relative;
+
+      .input-trailing-items {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 8px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+
+        .material-icons {
+          color: grey;
+        }
+      }
+    }
+}

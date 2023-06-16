@@ -1,0 +1,55 @@
+<section id="app-shape">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-controls">
+            <div class="row">
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h5 class="card-title m-0">Objetos</h5>
+              </div>
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6" align="end">
+                <button class="btn btn-sm" routerLink="/admin/settings/shapes/profile" buttons color="primary">Nuevo</button>
+              </div>
+            </div>
+          </div>
+          <app-simple-tablex [columns]="columns">
+            <!-- <ng-template #simpleHeader>
+              <h3 class="table-title">this is the table header</h3>
+            </ng-template> -->
+            <ng-template #headers>
+              <ng-container *ngFor="let column of columns">
+                <div class="stx-header secondary">{{column.label}}</div>
+              </ng-container>
+            </ng-template>
+            <ng-template #rows>
+              <ng-container *ngFor="let row of shapes">
+                <div class="stx-row">{{row.description}}</div>
+                <div class="stx-row">{{row.height}}</div>
+                <div class="stx-row">{{row.width}}</div>
+                <div class="stx-row">{{row.depth}}</div>
+                <div class="stx-row">
+                  <div class="stx-row-action">
+                    <button
+                      class="btn btn-xs stx-row-action"
+                      color="outline-secondary"
+                      (click)="editionClickEventHandler(row)"
+                    >Editar</button>
+                    <button
+                      class="btn btn-xs stx-row-action"
+                      color="outline-danger"
+                      (click)="deleteEventHandler(row)"
+                    >Eliminar</button>
+                  </div>
+                </div>
+              </ng-container>
+            </ng-template>
+            <!-- <ng-template #simpleFooter>
+              <h3>this is the table footer</h3>
+            </ng-template> -->
+          </app-simple-tablex>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

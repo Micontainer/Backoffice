@@ -1,0 +1,52 @@
+:host {}
+
+#dropzone {
+
+  .box.has-advanced-upload {
+    cursor: pointer;
+
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+  }
+
+  .box {
+    font-size: 1.25rem;
+    background-color: #f4f8fc;
+    position: relative;
+    padding: 50px 20px;
+  }
+
+  .box-icon {
+    font-size: 6em;
+    fill: #92b0b3;
+    display: block;
+    text-align: center;
+  }
+
+  .box-button {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .box-file {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .box-file-label-text {
+    font-size: 1.3em;
+  }
+
+  .is-dragover {
+    outline-offset: -20px;
+    outline-color: #c8dadf;
+    background-color: #cdcdcd;
+  }
+}

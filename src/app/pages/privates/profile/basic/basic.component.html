@@ -1,0 +1,171 @@
+<section id="app-profile-basic">
+  <form [formGroup]="formUserInfo" autocomplete="off" (ngSubmit)="updateUserData(formUserInfo.value)">
+    <app-simple-card headerText="Mis Datos">
+      <div class="sc-row">
+        <label for="nameLastnameInput" class="row-label">
+          <div class="label-text">
+            <span>Nombre y Apellido</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="nameLastnameInput" class="form-control" formControlName="nameLastname">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="documentInput" class="row-label">
+          <div class="label-text">
+            <span>Documento</span>
+          </div>
+          <div class="label-hinttext">Número de documento, DNI o CUIT</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="documentInput" class="form-control" text-uppercase formControlName="document">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="emailInput" class="row-label">
+          <div class="label-text">
+            <span>E-mail</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="emailInput" class="form-control" formControlName="email" readonly>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="phoneInput" class="row-label">
+          <div class="label-text">
+            <span>Teléfono</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="phoneInput" class="form-control" formControlName="phone">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="addressInput" class="row-label">
+          <div class="label-text">
+            <span>Dirección</span>
+          </div>
+          <div class="label-hinttext">Dirección completa</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="addressInput" class="form-control" text-uppercase formControlName="address">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn" color="primary" [disabled]="formUserInfo.invalid">Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+  <form [formGroup]="formPassword" autocomplete="off" (ngSubmit)="changePassword(formPassword.value)">
+    <app-simple-card headerText="Cambiar contraseña">
+      <div class="sc-row">
+        <label for="oldPasswordInput" class="row-label">
+          <div class="label-text">
+            <span>Contraseña</span>
+          </div>
+          <div class="label-hinttext">Tu contraseña actual</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input [type]="retrieveLabelType(PASSWORD_VIEW.OLD_PASSWORD)" id="oldPasswordInput" class="form-control"
+                formControlName="oldPassword" autocomplete="current-password">
+              <div class="input-trailing-items">
+                <span class="material-icons" (click)="PASSWORD_VIEW.OLD_PASSWORD = !PASSWORD_VIEW.OLD_PASSWORD">
+                  {{ changeIcon(PASSWORD_VIEW.OLD_PASSWORD) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="newPasswordInput" class="row-label">
+          <div class="label-text">
+            <span>Nueva contraseña</span>
+          </div>
+          <div class="label-hinttext">Tu nueva contraseña. No debe ser igual a la actual.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input [type]="retrieveLabelType(PASSWORD_VIEW.NEW_PASSWORD)" id="newPasswordInput" class="form-control"
+                formControlName="newPassword" autocomplete="current-password">
+              <div class="input-trailing-items">
+                <span class="material-icons" (click)="PASSWORD_VIEW.NEW_PASSWORD = !PASSWORD_VIEW.NEW_PASSWORD">
+                  {{ changeIcon(PASSWORD_VIEW.NEW_PASSWORD) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="repeatNewPasswordInput" class="row-label">
+          <div class="label-text">
+            <span>Repite tu nueva contraseña</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input [type]="retrieveLabelType(PASSWORD_VIEW.REPEAT_NEW_PASSWORD)" id="repeatNewPasswordInput"
+                class="form-control" formControlName="repeatNewPassword" autocomplete="current-password">
+              <div class="input-trailing-items">
+                <span class="material-icons"
+                  (click)="PASSWORD_VIEW.REPEAT_NEW_PASSWORD = !PASSWORD_VIEW.REPEAT_NEW_PASSWORD">
+                  {{ changeIcon(PASSWORD_VIEW.REPEAT_NEW_PASSWORD) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn" color="primary"
+                [disabled]="formPassword.invalid || !checkNewPassword">Guardar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

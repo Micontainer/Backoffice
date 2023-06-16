@@ -1,0 +1,21 @@
+<section id="app-spinner-button">
+  <button
+    class="btn w-100"
+    [ngClass]="dynamicClass"
+    [disabled]="disabled || toggle"
+    [type]="type"
+  >
+    <span
+      class="spinner-border spinner-border-sm"
+      role="status"
+      aria-hidden="true"
+      *ngIf="toggle; else uploadIconTemplate"
+    ></span>
+    <ng-template #uploadIconTemplate>
+      <span class="material-icons" *ngIf="icon">{{icon}}</span>
+    </ng-template>
+    <span id="buttonLabel">
+      {{label}}
+    </span>
+  </button>
+</section>

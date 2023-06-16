@@ -1,0 +1,159 @@
+<section id="app-table">
+  <div class="card">
+    <div class="card-body p-0">
+      <h4 class="card-title">{{tableTitle}}</h4>
+      <div class="card-controls">
+        <div class="column">
+          <ng-content></ng-content>
+        </div>
+        <div class="column flex-end">
+          <div class="form-group">
+            <input
+              id="searchInput"
+              type="text"
+              class="form-control-sm form-control"
+              placeholder="Buscar"
+              aria-label="Buscar"
+              aria-describedby="button-addon2"
+              [(ngModel)]="searchValue"
+              [ngModelOptions]="ModelOptions"
+              autocomplete="off"
+            >
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-sm">
+          <thead class="app-table-thead table-secondary">
+            <!-- header columns -->
+            <!-- nano columns -->
+            <th class="app-table-th nano"></th>
+            <ng-container *ngFor="let column of columnsCollection">
+              <ng-container>
+                <th class="app-table-th {{column.size || 'md'}}">{{column.label}}</th>
+              </ng-container>
+            </ng-container>
+          </thead>
+          <tbody class="app-table-tbody">
+            <ng-container *ngIf="hasData; else emptyTemplate">
+              <tr *ngFor="let row of dataSource">
+                <!-- nano columns -->
+                <td class="app-table-td nano"></td>
+                <ng-container *ngFor="let column of columnsCollection">
+                  <!-- text columns -->
+                  <ng-container *ngIf="column.type === 'text'">
+                    <td class="app-table-td {{column.size || 'md'}}">{{row[column.property]}}</td>
+                  </ng-container>
+
+                  <!-- currency columns -->
+                  <ng-container *ngIf="column.type === 'currency'">
+                    <td class="app-table-td {{column.size || 'md'}}">{{row[column.property] | currency}}</td>
+                  </ng-container>
+
+                  <!-- text buttons -->
+                  <ng-container *ngIf="column.type === 'button'">
+                    <td class="app-table-td {{column.size || 'xs'}}">
+                      <button
+                        class="action-button"
+                        (click)="customActionClickEventHandler(
+                          row,
+                          column.type,
+                          column.property
+                        )"
+                      >
+                        <span class="material-icons">
+                          {{row[column.property]}}
+                        </span>
+                      </button>
+                    </td>
+                  </ng-container>
+
+                  <!-- toggle columns -->
+                  <ng-container *ngIf="column.type === 'toggle'">
+                    <td class="app-table-td {{column.size || 'xs'}}">
+                      <div class="form-check form-switch">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="toggle-{{row.id}}"
+                          [(ngModel)]="row[column.dataProperty || '']"
+                          [ngModelOptions]="ModelOptions"
+                          (click)="customActionClickEventHandler(
+                            row,
+                            column.type,
+                            column.property
+                          )"
+                        />
+                        <label class="form-check-label" for="toggle-{{row.id}}">{{row[column.property]}}</label>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- checkbox columns -->
+                  <ng-container *ngIf="column.type === 'check'">
+                    <td class="app-table-td {{column.size || 'xs'}}">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          value=""
+                          id="check-{{row.id}}"
+                          [(ngModel)]="row[column.dataProperty || '']"
+                          [ngModelOptions]="ModelOptions"
+                          (click)="customActionClickEventHandler(
+                            row,
+                            column.type,
+                            column.property
+                          )"
+                        >
+                        <label class="form-check-label" for="check-{{row.id}}">
+                          {{row[column.property]}}
+                        </label>
+                      </div>
+                    </td>
+                  </ng-container>
+
+                  <!-- action columns -->
+                  <ng-container *ngIf="column.type === 'action'">
+                    <td class="app-table-td action-column">
+                      <ng-container *ngFor="let action of row[column.property]">
+                        <button
+                          class="action-button"
+                          (click)="actionClickEventHandler(row, action)"
+                        >
+                          <span class="material-icons">{{action.icon}}</span>
+                        </button>
+                      </ng-container>
+                    </td>
+                  </ng-container>
+
+                </ng-container>
+              </tr>
+            </ng-container>
+            <ng-template #emptyTemplate>
+              <tr>
+                <!-- nano columns -->
+                <th class="app-table-td nano"></th>
+                <td class="app-table-td" [attr.colspan]="columns.length">
+                  <label class="column-text text-muted">
+                    <span class="material-icons icon-text">
+                      announcement
+                    </span>
+                    No hay Registros disponibles.
+                  </label>
+                </td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </div>
+      <app-table-pagination
+        [length]="length"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="pageSizeOptions"
+        (pageEvent)="pageEventHandler($event)"
+      ></app-table-pagination>
+    </div>
+  </div>
+</section>

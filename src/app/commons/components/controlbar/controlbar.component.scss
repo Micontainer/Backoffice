@@ -1,0 +1,21 @@
+
+
+.controlbar {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 1rem 0;
+
+  .controlbar__left,
+  .controlbar__right {
+    display: inline-flex;
+
+    &.margin-end {
+      margin-right: 8px;
+    }
+  }
+
+  .controlbar__right {
+    justify-content: flex-end;
+  }
+
+}

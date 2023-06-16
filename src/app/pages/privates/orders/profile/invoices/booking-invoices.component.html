@@ -1,0 +1,32 @@
+<section id="app-booking-invoices">
+    <app-simple-tablex [columns]="columns">
+      <!-- <ng-template #simpleHeader>
+        <h3 class="table-title">this is the table header</h3>
+      </ng-template> -->
+      <ng-template #headers>
+        <ng-container *ngFor="let column of columns">
+          <div class="stx-header secondary">{{column.label}}</div>
+        </ng-container>
+      </ng-template>
+      <ng-template #rows>
+        <ng-container *ngFor="let row of invoices">
+          <div class="stx-row">
+            <a
+              routerLink="/admin/orders/invoices"
+              [queryParams]="{ page: 'basic', 'ref.invoice': row.uid }"
+              queryParamsHandling="merge"
+              color="primary"
+            >{{row.description}}</a>
+          </div>
+          <div class="stx-row">{{row.comments}}</div>
+          <div class="stx-row">{{row.price | currency}}</div>
+          <div class="stx-row">{{getRowFormattedDateByUnix(row.updatedAt)}}</div>
+          <div class="stx-row">{{row.status}}</div>
+        </ng-container>
+      </ng-template>
+      <!-- <ng-template #simpleFooter>
+        <h3>this is the table footer</h3>
+      </ng-template> -->
+    </app-simple-tablex>
+  </section>
+  

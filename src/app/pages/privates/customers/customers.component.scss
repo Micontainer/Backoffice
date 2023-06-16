@@ -1,0 +1,16 @@
+:host { }
+
+#app-customers {
+
+  .table-title {
+    color: var(--color-primary);
+  }
+  .card {
+      .card-body {
+          .card-controls > .row {
+              align-items: center;
+              margin-bottom: 20px;
+          }
+      }
+  }
+}

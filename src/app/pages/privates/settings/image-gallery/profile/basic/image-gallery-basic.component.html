@@ -1,0 +1,189 @@
+<section id="image-gallery-basic">
+    <form
+      [formGroup]="form"
+      autocomplete="off"
+      (ngSubmit)="submitEventHandler(form.value)"
+    >
+      <app-simple-card
+        headerText="Configuración de objeto"
+      >
+        <div class="sc-row">
+          <label for="descriptionInput" class="row-label">
+            <div class="label-text">
+              <span>Nombre</span>
+            </div>
+            <div class="label-hinttext">El nombre para el objeto</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="text"
+                  id="descriptionInput"
+                  class="form-control"
+                  formControlName="description"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+      <app-simple-card
+        headerText="Configuración de Dimensión"
+      >
+        <div class="sc-row">
+          <label for="widthInput" class="row-label">
+            <div class="label-text">
+              <span>Ancho</span>
+            </div>
+            <div class="label-hinttext">Ancho total del objeto.</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="number"
+                  id="widthInput"
+                  class="form-control"
+                  formControlName="width"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="heightInput" class="row-label">
+            <div class="label-text">
+              <span>Alto</span>
+            </div>
+            <div class="label-hinttext">Alto total del objeto.</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="number"
+                  id="heightInput"
+                  class="form-control"
+                  formControlName="height"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="depthInput" class="row-label">
+            <div class="label-text">
+              <span>Profundidad</span>
+            </div>
+            <div class="label-hinttext">Profundidad total del objeto.</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="number"
+                  id="depthInput"
+                  class="form-control"
+                  formControlName="depth"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="dimensionsM2Input" class="row-label">
+            <div class="label-text">
+              <span>Metros<sup>2</sup></span>
+            </div>
+            <div class="label-hinttext">Dimensión del objeto en metros cuadrados.</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="number"
+                  id="dimensionsM2Input"
+                  class="form-control"
+                  formControlName="dimensionsM2"
+                  readonly
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="dimensionsM3" class="row-label">
+            <div class="label-text">
+              <span>Metros<sup>3</sup></span>
+            </div>
+            <div class="label-hinttext">Dimensión del objeto en metros cúbicos.</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="number"
+                  id="dimensionsM3"
+                  class="form-control"
+                  [ngModelOptions]="{standalone: true}"
+                  [ngModel]="dimensionModel"
+                  readonly
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="dummieInput" class="row-label"></label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <button
+                  class="btn"
+                  color="primary"
+                  [disabled]="form.invalid"
+                >{{buttonText}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+      <app-simple-card
+        headerText="Administrar objeto"
+        *ngIf="isEdition"
+      >
+        <div class="sc-row">
+          <label class="row-label">
+            <div class="label-text">
+              <span>Eliminar</span>
+            </div>
+            <div class="label-hinttext">
+              <span>Eliminar el objeto y todos los datos relacionados</span>
+              <br>
+              <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <button
+                  type="button"
+                  class="btn"
+                  color="danger"
+                  (click)="deleteEventHandler()"
+                >Eliminar objeto</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+    </form>
+  </section>
+  

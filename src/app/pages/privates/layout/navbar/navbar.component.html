@@ -1,0 +1,44 @@
+<section id="app-navbar">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6"></div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="dropdown-container">
+        <div class="button-wrapper">
+          <button class="btn btn-outline-gray-300 text-dark mr-1 btn-notification" (click)="notificationClickEventHandler()">
+            <span class="material-icons">circle_notifications</span>
+          </button>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-outline-gray-300 text-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="material-icons">account_circle</span>
+            <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
+              <span class="mb-0 font-small fw-bold text-gray-900">{{ userName }}</span>
+            </div>
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/admin/profile">
+                <app-icon-label
+                  icon="account_circle"
+                  label="Mi Perfil"
+                  styleClass="text-black-50 normal-icon-size"
+                  styleWrapper="flex-start"
+                ></app-icon-label>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">
+                <app-icon-label
+                  icon="logout"
+                  label="Cerrar Sesión"
+                  styleClass="text-danger normal-icon-size"
+                  styleWrapper="flex-start"
+                ></app-icon-label>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

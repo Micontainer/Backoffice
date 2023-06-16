@@ -1,0 +1,68 @@
+:host {
+  min-width: 0;
+  --option-margin-bottom: 0px;
+  --option-link-display: inline-block;
+  --profile-tabs-margin-bottom: 1rem;
+  --profile-tabs-border-right: none;
+
+  @media(min-width: 758px) {
+    --option-margin-bottom: 20px;
+    --option-link-display: block;
+    --profile-tabs-margin-bottom: 0rem;
+    --profile-tabs-border-right: 1px solid rgb(219, 214, 225);
+  }
+}
+
+.simple-menu-element {
+
+  .list-group-item.active {
+    background: var(--color-primary) !important;
+    color: white !important;
+  }
+
+  .options {
+    // margin-bottom: 20px;
+    margin-bottom: var(--option-margin-bottom);
+
+    .option-heading {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      // margin-bottom: 4px;
+      border: 0.0625rem solid rgba(17, 24, 39, 0.125) !important;
+    }
+
+    .option-link {
+      // display: block;
+      display: var(--option-link-display);
+      font-size: 14px;
+      line-height: 30px;
+      position: relative;
+      // color: var(--color-primary);
+
+      &:not(:last-child) {
+        margin-right: 8px;
+      }
+
+      &.active {
+        color: rgb(62, 52, 70);
+
+        &::before {
+          background: rgb(108, 95, 199);
+        }
+      }
+
+      &::before {
+        position: absolute;
+        content: "";
+        display: block;
+        top: 4px;
+        left: -30px;
+        height: 20px;
+        width: 4px;
+        background: transparent;
+        border-radius: 0px 2px 2px 0px;
+      }
+    }
+  }
+}

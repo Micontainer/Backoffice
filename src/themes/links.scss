@@ -1,0 +1,13 @@
+
+
+a[color="primary"] {
+  @include link(primary);
+}
+
+a[color="secondary"] {
+  @include link(secondary);
+}
+
+a[color="tertiary"] {
+  @include link(tertiary);
+}

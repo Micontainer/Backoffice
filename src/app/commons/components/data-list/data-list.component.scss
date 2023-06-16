@@ -1,0 +1,51 @@
+:host { }
+
+#app-data-list {
+
+  .list-wrapper {
+
+    .list-header {
+
+    }
+
+    .list-body {
+
+      .list-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        cursor: pointer;
+        transition: all .5s;
+        border-bottom: 1px solid #dddddd;
+
+        .description {
+
+        }
+
+        .actions {
+
+          .btn-action {
+            display: flex;
+          }
+
+          .action-link {
+            display: flex;
+
+            .item-icon {
+              margin-right: 1rem;
+            }
+
+            .item-text {
+
+            }
+          }
+        }
+
+        &:hover {
+          background-color: #dddddd;
+        }
+      }
+    }
+  }
+}

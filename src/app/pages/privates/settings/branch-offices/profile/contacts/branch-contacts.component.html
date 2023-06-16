@@ -1,0 +1,90 @@
+<section id="branch-contacts">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+    (submit)="submitEventHandler(form.value)"
+  >
+    <app-simple-card
+      headerText="Configuración de Contacto"
+    >
+      <div class="sc-row">
+        <label for="phoneInput" class="row-label">
+          <div class="label-text">
+            <span>Teléfono</span>
+          </div>
+          <div class="label-hinttext">Número de teléfono de contacto para atención al cliente.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="tel"
+                id="phoneInput"
+                class="form-control"
+                formControlName="phone"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="emailInput" class="row-label">
+          <div class="label-text">
+            <span>Email</span>
+          </div>
+          <div class="label-hinttext">Correo electrónico de contacto para atención al cliente.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="email"
+                id="emailInput"
+                class="form-control"
+                formControlName="email"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="whatsappInput" class="row-label">
+          <div class="label-text">
+            <span>Whatsapp</span>
+          </div>
+          <div class="label-hinttext">Número de whatsapp de contacto para atención al cliente.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="tel"
+                id="whatsappInput"
+                class="form-control"
+                formControlName="whatsapp"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label">
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button
+                class="btn"
+                color="primary"
+                [disabled]="form.invalid"
+              >{{buttonText}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

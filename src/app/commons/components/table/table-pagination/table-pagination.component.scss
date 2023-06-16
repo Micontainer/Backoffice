@@ -1,0 +1,33 @@
+
+
+#app-table-pagination {
+
+  .table-controls {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    margin-top: 8px;
+
+    .column {
+
+      &.flex-end {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .pagination-info {
+        // font-size: 0.6rem;
+        margin-right: 8px;
+      }
+
+      .btn-pagination {
+        display: flex;;
+
+        &.m-right {
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+}

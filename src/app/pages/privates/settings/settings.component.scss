@@ -1,0 +1,28 @@
+:host { }
+
+#app-settings {
+
+  #card-header {
+    margin-bottom: 2rem;
+
+    .card-title {
+      margin-bottom: 0;
+    }
+  }
+
+  .card-setting-item {
+    cursor: pointer;
+
+    .icon-shape {
+
+      &[icon-shape-primary="true"] {
+        color: var(--bs-black);
+        background: var(--color-primary);
+
+        .card-setting-icon {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}

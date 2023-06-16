@@ -1,0 +1,37 @@
+:host {
+  --notification-list-width: 320px;
+  --notification-message-font-size: .8rem;
+
+  @media (min-width: 320px) { }
+
+  @media (min-width: 375px) { }
+
+  @media (min-width: 425px) { }
+
+  @media (min-width: 576px) { }
+
+  @media (min-width: 768px) { }
+
+  @media (min-width: 992px) { }
+
+  @media (min-width: 1200px) { }
+}
+
+#app-navbar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  .dropdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    .dropdown-toggle {
+      display: flex;
+    }
+
+    .btn-notification {
+      display: flex;
+    }
+  }
+}

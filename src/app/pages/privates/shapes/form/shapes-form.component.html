@@ -1,0 +1,54 @@
+<section id="shapes-form">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 offset-md-3">
+      <div class="card" shadow="true">
+        <div class="card-body">
+          <h5 class="card-title">Nuevo Objeto</h5>
+          <div class="form-wrapper">
+            <form
+              [formGroup]="form"
+              autocomplete="off"
+              (ngSubmit)="submitEventHandler(form.value)"
+            >
+              <div class="form-group">
+                <label for="nameInput">Nombre</label>
+                <input
+                  type="text"
+                  id="nameInput"
+                  class="form-control"
+                  formControlName="name"
+                >
+              </div>
+              <app-volume-calculator (volume)="getVolume($event)" (xyz)="getXyz($event)"></app-volume-calculator>
+              <div class="form-group">
+                <div class="separator"></div>
+                <app-spinner-button
+                  class="w-100"
+                  dynamicClass="btn-primary"
+                  color="primary"
+                  label="Guardar"
+                  [toggle]="formSubmitButtonSpinner"
+                  [disabled]="form.invalid"
+                  type="submit"
+                ></app-spinner-button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-xs-12 col-ms-12 col-md-6 col-lg-6 col-xl-6">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Desactivar</label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-ms-12 col-md-6 col-lg-6 col-xl-6" align="end">
+              <button class="btn btn-sm" color="danger">Eliminar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

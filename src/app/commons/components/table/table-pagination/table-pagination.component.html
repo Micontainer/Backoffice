@@ -1,0 +1,40 @@
+<section id="app-table-pagination">
+  <div class="table-controls">
+    <div class="column">
+      <select
+        #pageSize
+        id="itemsPerPage"
+        class="form-control-sm"
+        (change)="changePageSizeEventHandler(pageSize.value)"
+      >
+        <option
+          *ngFor="let sizeOption of pageSizeOptions"
+          [value]="sizeOption"
+        >{{sizeOption}}</option>
+      </select>
+    </div>
+    <div class="column flex-end">
+      <label class="pagination-info">
+        Pág {{pageIndex}} de {{pageTotal}}
+      </label>
+      <button
+        class="btn btn-light btn-sm btn-pagination m-right"
+        (click)="paginationEventHandler(Backward)"
+        [disabled]="disabledBackwardButton"
+      >
+        <span class="material-icons">
+          arrow_back
+        </span>
+      </button>
+      <button
+        class="btn btn-light btn-sm btn-pagination"
+        (click)="paginationEventHandler(Forward)"
+        [disabled]="disabledForwardButton"
+      >
+        <span class="material-icons">
+          arrow_forward
+        </span>
+      </button>
+    </div>
+  </div>
+</section>

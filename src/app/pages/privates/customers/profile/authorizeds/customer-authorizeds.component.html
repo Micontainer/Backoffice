@@ -1,0 +1,56 @@
+<section id="customer-authorizeds">
+  <div class="page-header">
+    <button
+      class="btn"
+      color="secondary"
+      flex-center
+      routerLink="/admin/customers/authorizeds"
+      [queryParams]="{
+        page: 'basic',
+        ref: customerUID
+      }"
+      queryParamsHandling="merge"
+      [disabled]="!hasBookings"
+    >
+      <span class="material-icons">add</span>
+      Agregar Autorizado
+    </button>
+  </div>
+  <app-simple-tablex [columns]="columns" *ngIf="authorizeds.length; else noContent">
+    <ng-template #headers>
+      <ng-container *ngFor="let column of columns">
+        <div class="stx-header secondary">{{column.label}}</div>
+      </ng-container>
+    </ng-template>
+    <ng-template #rows>
+      <ng-container *ngFor="let row of authorizeds">
+        <div class="stx-row">
+          <a
+            routerLink="/admin/customers/authorizeds"
+            [queryParams]="{
+              page: 'basic',
+              'ref.authorized': row.uid
+            }"
+            queryParamsHandling="merge"
+            color="primary"
+          >{{row.name}}</a>
+        </div>
+        <div class="stx-row">{{row.email}}</div>
+        <div class="stx-row">{{row.phone}}</div>
+        <div class="stx-row">{{row.document}}</div>
+        <div class="stx-row stx-row-action">
+          <button
+            class="btn btn-xs stx-row-action"
+            color="outline-danger"
+            (click)="deleteEventHandler(row)"
+          >
+            <span class="material-icons">delete</span>
+          </button>
+        </div>
+      </ng-container>
+    </ng-template>
+  </app-simple-tablex>
+  <ng-template #noContent>
+    <app-no-content-component></app-no-content-component>
+  </ng-template>
+</section>

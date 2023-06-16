@@ -1,0 +1,28 @@
+<div class="sidebar-panel" [ngClass]="{'show': display}">
+  <div class="sidebar-panel__backdrop" [ngClass]="{'show': toggle}"></div>
+  <div class="sidebar-panel-body" [ngClass]="{'open': toggle}">
+    <div class="sidebar-panel-header">
+      <div class="sidebar-panel-header-column">
+        <!-- <h2 class="sidebar-panel-title" *ngIf="!toggleSpinner">{{panelTitle | translate}}</h2> -->
+        <h4 class="sidebar-panel-title" *ngIf="!toggleSpinner">{{panelTitle}}</h4>
+      </div>
+      <div class="sidebar-panel-header-column end" align="end">
+        <!-- <button mat-icon-button matSuffix [matTooltip]="'commons.buttons.tooltips.close' | translate" -->
+        <button id="sidebar-panel-close-button" class="btn btn-sm" (click)="closePanelEventHandler()">
+          <!-- <mat-icon color="dark">close</mat-icon> -->
+          <span class="material-icons">
+            close
+          </span>
+        </button>
+      </div>
+    </div>
+    <div class="sidebar-panel-content">
+      <ng-container *ngIf="toggleSpinner; else contentTemplate">
+        <app-spinner></app-spinner>
+      </ng-container>
+      <ng-template #contentTemplate>
+        <ng-content></ng-content>
+      </ng-template>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<section id="image-gallery">
+  <app-dropzone (sync)="fetchData()"></app-dropzone>
+  <div class="images-box d-flex py-3 flex-wrap" [ngStyle]="{'justify-content': isModal ? 'center' : 'initial'}"
+    *ngIf="images.length; else noContent">
+    <div class="image-box" *ngFor="let image of images">
+      <img *ngIf="isModal; else notModal" src="{{image.guid}}" (click)="selectImageEventHandler(image)"
+        data-bs-dismiss="modal" />
+      <ng-template #notModal>
+        <img src="{{image.guid}}" (click)="selectImageEventHandler(image)" data-bs-toggle="modal"
+          data-bs-target="#imageModal" />
+      </ng-template>
+    </div>
+  </div>
+  <ng-template #noContent>
+    <div class="w-100">
+      <app-no-content-component></app-no-content-component>
+    </div>
+  </ng-template>
+  <!-- Modal -->
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true" *ngIf="!isModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="imageModalLabel">{{selectedImage?.name}}</h1>
+          <button #closeButton type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <img src="{{selectedImage?.guid}}" />
+        </div>
+        <div class="modal-footer">
+          <div class="used-image" *ngIf="selectedImage?.resources.length">
+            <h4>En uso en:</h4>
+            <ul>
+              <li *ngFor="let resource of selectedImage?.resources">
+              {{ resource.description }}</li>
+            </ul>
+          </div>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-danger" (click)="deleteEventHandler()"
+            [disabled]="selectedImage?.resources.length">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

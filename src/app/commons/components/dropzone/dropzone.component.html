@@ -1,0 +1,18 @@
+<section id="dropzone">
+  <div class="box has-advanced-upload" [ngClass]="{'is-dragover': isDragged}" (drop)="onDropEventHandler($event)"
+    (dragover)="onDragOverEventHandler($event)" (dragleave)="onDragLeaveEventHandler($event)" (click)="openSearchDialogEventHandler($event)">
+    <div class="box-input">
+      <span class="material-icons card-setting-icon box-icon">{{ selectedFile ? 'upload' : 'search' }}</span>
+      <input #inputFile type="file" class="box-file" type="file" (change)="onFileChangeEventHandler($event)" />
+    </div>
+    <div class="box-file-label-text text-center">
+      <label class="box-file-label" for="file">
+        <button *ngIf="selectedFile; else noFileSelected" class="btn btn-primary box-button" (click)="uploadEventHandler($event)"
+          type="button">Subir</button>
+        <ng-template #noFileSelected>
+          <strong>Buscar imagen</strong>
+        </ng-template>
+      </label>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,55 @@
+
+
+<section id="app-customers">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="card-controls">
+            <div class="row">
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <h5 class="card-title m-0">Clientes</h5>
+              </div>
+              <div class="col-xs-col col-sm-12 col-md-6 col-lg-6 col-xl-6" align="end">
+                <button class="btn btn-sm" routerLink="/admin/customers/profile" buttons color="primary">Nuevo Cliente</button>
+              </div>
+            </div>
+          </div>
+          <app-simple-tablex [columns]="columns" *ngIf="customers.length; else noContent">
+            <ng-template #headers>
+              <ng-container *ngFor="let column of columns">
+                <div class="stx-header secondary">{{column.label}}</div>
+              </ng-container>
+            </ng-template>
+            <ng-template #rows>
+              <ng-container *ngFor="let row of customers">
+                <div class="stx-row">{{row.name || '--'}}</div>
+                <div class="stx-row">
+                  <a
+                    routerLink="/admin/customers/profile"
+                    [queryParams]="{ ref: row.uid }"
+                    color="primary"
+                  >{{row.email}}</a>
+                </div>
+                <div class="stx-row">{{row.phone || '--'}}</div>
+                <div class="stx-row">{{row.status}}</div>
+                <div class="stx-row">
+                  <button
+                    class="btn btn-xs"
+                    color="outline-danger"
+                    (click)="deleteEventHandler(row)"
+                  >Eliminar</button>
+                </div>
+              </ng-container>
+            </ng-template>
+          </app-simple-tablex>
+          <ng-template #noContent>
+            <div class="w-100">
+              <app-no-content-component></app-no-content-component>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

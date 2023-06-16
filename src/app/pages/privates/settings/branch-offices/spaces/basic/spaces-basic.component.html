@@ -1,0 +1,232 @@
+<section id="spaces-basic">
+  <form [formGroup]="form" autocomplete="off" (ngSubmit)="submitEventHandler(form.value)">
+    <app-simple-card headerText="Configuración de Espacios">
+      <div class="sc-row">
+        <label for="descriptionInput" class="row-label">
+          <div class="label-text">
+            <span>Nombre</span>
+          </div>
+          <div class="label-hinttext">El nombre para el Espacio</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="text" id="descriptionInput" class="form-control" formControlName="description">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="areaCoefficient" class="row-label">
+          <div class="label-text">
+            <span>Coeficiente de área</span>
+          </div>
+          <div class="label-hinttext">Utilizado para el cálculo del precio de los espacios.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <select class="form-select" id="areaCoefficient" formControlName="areaCoefficientUID"
+                *ngIf="coefficients.length; else addCoefficient">
+                <ng-container *ngFor="let option of coefficients">
+                  <option [value]="option.value">{{option.label}}</option>
+                </ng-container>
+              </select>
+              <ng-template #addCoefficient>
+                <button type="button" class="btn" color="primary" (click)="addAreaCoefficientEventHandler()">Añadir
+                  coeficiente</button>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="stateSelect" class="row-label">
+          <div class="label-text">
+            <span>Imagen</span>
+          </div>
+          <div class="label-hinttext">Imagen de ejemplo del espacio.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn stx-row-action" color="outline-secondary" data-bs-toggle="modal"
+                data-bs-target="#galleryModal" type="button"
+                *ngIf="!imageControl.value; else imageSelected">Galeria</button>
+              <ng-template #imageSelected>
+                <img class="selected-image" [src]="imageControl.value.guid" data-bs-toggle="modal"
+                  data-bs-target="#galleryModal" />
+              </ng-template>
+              <!-- Modal -->
+              <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <app-image-gallery-component [isModal]="true"
+                      (selectImage)="selectImageEmitEventHandler($event)"></app-image-gallery-component>
+                    <div class="modal-footer" *ngIf="imageControl.value">
+                      <button type="button" class="btn btn-danger" (click)="clearSelectedImageEventHandler()">Desvincular imagen</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <app-simple-card headerText="Configuración de Dimensión">
+      <div class="sc-row">
+        <label for="widthInput" class="row-label">
+          <div class="label-text">
+            <span>Ancho</span>
+          </div>
+          <div class="label-hinttext">Ancho total del espacio.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="widthInput" class="form-control" formControlName="width">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="heightInput" class="row-label">
+          <div class="label-text">
+            <span>Alto</span>
+          </div>
+          <div class="label-hinttext">Alto total del espacio.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="heightInput" class="form-control" formControlName="height">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="depthInput" class="row-label">
+          <div class="label-text">
+            <span>Profundidad</span>
+          </div>
+          <div class="label-hinttext">Profundidad total del espacio.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="depthInput" class="form-control" formControlName="depth">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dimensionsM2Input" class="row-label">
+          <div class="label-text">
+            <span>Metros<sup>2</sup></span>
+          </div>
+          <div class="label-hinttext">Dimensión del espacio en metros cuadrados.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="dimensionsM2Input" class="form-control" formControlName="dimensionsM2" readonly>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dimensionsM3" class="row-label">
+          <div class="label-text">
+            <span>Metros<sup>3</sup></span>
+          </div>
+          <div class="label-hinttext">Dimensión del espacio en metros cúbicos.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="dimensionsM3" class="form-control" [ngModelOptions]="{standalone: true}"
+                [ngModel]="dimensionModel" readonly>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="suggestedPrice" class="row-label">
+          <div class="label-text">
+            <span>Precio</span>
+          </div>
+          <div class="label-hinttext">Precio estimado basado en los coeficientes registrados.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input appCurrencyInput [value]="priceControl.value | currency" type="tel" id="suggestedPrice"
+                class="form-control" readonly>
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="dummieInput" class="row-label"></label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button class="btn" color="primary" [disabled]="form.invalid">{{buttonText}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+    <app-simple-card headerText="Administrar Espacio" *ngIf="isEdition">
+      <div class="sc-row">
+        <label for="stateSelect" class="row-label">
+          <div class="label-text">
+            <span>Estado</span>
+          </div>
+          <div class="label-hinttext">Al estar inactivo, el espacio no podrá ser visto ni seleccionado.</div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <select class="form-select" id="stateSelect" aria-label="State Selection"
+                [ngModelOptions]="{standalone: true}" [(ngModel)]="optionModel" (change)="stateChangeEventHandler()">
+                <!-- <option selected>Open this select menu</option> -->
+                <ng-container *ngFor="let option of stateOptions">
+                  <option [value]="option.value">{{option.label}}</option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label class="row-label">
+          <div class="label-text">
+            <span>Eliminar</span>
+          </div>
+          <div class="label-hinttext">
+            <span>Eliminar el espacio y todos los datos relacionados</span>
+            <br>
+            <span font-danger>Ten cuidado, estos cambios no podrán ser revertidos</span>
+          </div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <button type="button" class="btn" color="danger" (click)="deleteEventHandler()">Eliminar Espacio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

@@ -1,0 +1,141 @@
+<section id="invoice-basic">
+    <form
+      [formGroup]="form"
+      autocomplete="off"
+      (ngSubmit)="submitEventHandler(form.value)"
+    >
+      <app-simple-card
+        headerText="Adjuntar factura"
+      >
+        <div class="sc-row">
+          <label for="descriptionInput" class="row-label">
+            <div class="label-text">
+              <span>Descripción</span>
+            </div>
+            <div class="label-hinttext">Descripción de la factura</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="text"
+                  id="descriptionInput"
+                  class="form-control"
+                  formControlName="description"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="commentsInput" class="row-label">
+            <div class="label-text">
+              <span>Comentarios</span>
+            </div>
+            <div class="label-hinttext">Comentarios sobre la factura</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="text"
+                  id="commentsInput"
+                  class="form-control"
+                  formControlName="comments"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="fileInput" class="row-label">
+            <div class="label-text">
+              <span>{{attachmentUploadLabel}}</span>
+            </div>
+            <div class="label-hinttext">{{attachmentUploadHintText}}</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <input
+                  type="file"
+                  id="fileInput"
+                  class="form-control"
+                  formControlName="file"
+                  (change)="onFileChange($event)"
+                >
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row">
+          <label for="dummieInput" class="row-label"></label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <button
+                  class="btn"
+                  color="primary"
+                  type="submit"
+                  [disabled]="form.invalid"
+                >Guardar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc-row" *ngIf="hasAttachment">
+          <label for="downloadInput" class="row-label">
+            <div class="label-text">
+              <span>Archivo</span>
+            </div>
+            <div class="label-hinttext">Foto de la factura</div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                <a href="{{invoiceAttachment}}">
+                  <button
+                  class="btn"
+                  color="secondary"
+                  type="button"
+                >Descargar</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+      <app-simple-card
+        headerText="Estado de la factura"
+      >
+        <div class="sc-row">
+          <label for="statusSelect" class="row-label">
+            <div class="label-text">
+              <span>Estado</span>
+            </div>
+          </label>
+          <div class="row-column">
+            <div class="column-container">
+              <div class="control-wrapper">
+                  <select
+                    id="statusSelect"
+                    class="form-control"
+                    formControlName="statusSelection"
+                    (change)="statusSelectionChange()"
+                  >
+                  <option *ngFor="let option of statusOptions" [value]="option.value">
+                    {{option.label}}
+                  </option>
+                </select>
+                <div class="input-trailing-items"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-simple-card>
+    </form>
+  </section>
+  

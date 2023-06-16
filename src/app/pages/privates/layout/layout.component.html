@@ -1,0 +1,15 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<main class="content">
+  <app-navbar
+    (toggleSidebarEvent)="notificationClickEventHandler()"
+  ></app-navbar>
+  <router-outlet></router-outlet>
+</main>
+
+<app-slide-sidebar #notificationsSidebar panelTitle="Notificaciones">
+  <ng-container *ngFor="let notification of notifications">
+    <app-notification [source]="notification"></app-notification>
+  </ng-container>
+</app-slide-sidebar>

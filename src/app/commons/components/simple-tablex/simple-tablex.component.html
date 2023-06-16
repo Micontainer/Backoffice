@@ -1,0 +1,38 @@
+<section class="simple-tablex">
+  <ng-container
+    [ngTemplateOutlet]="simpleHeader || defaultSimpleHeaderTemplate"
+  ></ng-container>
+  <div class="stx-element" [ngStyle]="style">
+    <ng-container
+      [ngTemplateOutlet]="headers || defaultHeaderTemplate"
+      [ngTemplateOutletContext]="{ $implicit: columnsRef }"
+    ></ng-container>
+    <ng-container
+      [ngTemplateOutlet]="rows || defaultRowTemplate"
+      [ngTemplateOutletContext]="{ $implicit: source, columnsRef }"
+    ></ng-container>
+  </div>
+  <ng-container
+    [ngTemplateOutlet]="simpleFooter || defaultSimpleFooterTemplate"
+  ></ng-container>
+</section>
+
+<ng-template #defaultHeaderTemplate let-rows>
+  <ng-container *ngFor="let row of rows">
+    <div class="stx-header">{{row.label}}</div>
+  </ng-container>
+</ng-template>
+
+<ng-template #defaultSimpleHeaderTemplate>
+  <div class="simple-header"></div>
+</ng-template>
+
+<ng-template #defaultRowTemplate let-collector let-columns="columnsRef">
+  <ng-container *ngFor="let row of collector">
+    <ng-container *ngFor="let column of columns">
+      <div class="stx-row">{{row[column.property] || '--'}}</div>
+    </ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #defaultSimpleFooterTemplate></ng-template>

@@ -1,0 +1,72 @@
+
+
+:root {
+  --color-primary: #5eca00;
+  --color-primary-rgb: 94,202,0;
+  --color-primary-contrast: #000000;
+  --color-primary-contrast-rgb: 0,0,0;
+  --color-primary-shade: #53b200;
+  --color-primary-tint: #6ecf1a;
+
+  --color-secondary: #3d3083;
+  --color-secondary-rgb: 61,48,131;
+  --color-secondary-contrast: #ffffff;
+  --color-secondary-contrast-rgb: 255,255,255;
+  --color-secondary-shade: #362a73;
+  --color-secondary-tint: #50458f;
+
+  --color-tertiary: #010101;
+  --color-tertiary-rgb: 1,1,1;
+  --color-tertiary-contrast: #ffffff;
+  --color-tertiary-contrast-rgb: 255,255,255;
+  --color-tertiary-shade: #010101;
+  --color-tertiary-tint: #1a1a1a;
+
+  --color-success: #2dd36f;
+  --color-success-rgb: 45,211,111;
+  --color-success-contrast: #000000;
+  --color-success-contrast-rgb: 0,0,0;
+  --color-success-shade: #28ba62;
+  --color-success-tint: #42d77d;
+
+  --color-warning: #ffc409;
+  --color-warning-rgb: 255,196,9;
+  --color-warning-contrast: #000000;
+  --color-warning-contrast-rgb: 0,0,0;
+  --color-warning-shade: #e0ac08;
+  --color-warning-tint: #ffca22;
+
+  --color-danger: #eb445a;
+  --color-danger-rgb: 235,68,90;
+  --color-danger-contrast: #ffffff;
+  --color-danger-contrast-rgb: 255,255,255;
+  --color-danger-shade: #cf3c4f;
+  --color-danger-tint: #ed576b;
+
+  --color-medium: #92949c;
+  --color-medium-rgb: 146,148,156;
+  --color-medium-contrast: #000000;
+  --color-medium-contrast-rgb: 0,0,0;
+  --color-medium-shade: #808289;
+  --color-medium-tint: #9d9fa6;
+
+  --color-light: #f4f5f8;
+  --color-light-rgb: 244,245,248;
+  --color-light-contrast: #000000;
+  --color-light-contrast-rgb: 0,0,0;
+  --color-light-shade: #d7d8da;
+  --color-light-tint: #f5f6f9;
+
+  --background-light-shade: #f5f8fa;
+  --background-dark-tint: rgba(0, 0, 0,.8);
+
+  --bs-active-danger: var(--color-danger);
+  --bs-active-success: var(--color-success);
+
+  --color-blue: #0275d8;
+  --color-blue-rgb: 2,117,216;
+  --color-blue-contrast: #ffffff;
+  --color-blue-contrast-rgb: 255,255,255;
+  --color-blue-shade: #0267be;
+  --color-blue-tint: #1b83dc;
+}

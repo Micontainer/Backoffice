@@ -1,0 +1,13 @@
+:host { }
+
+#app-shape {
+    .card {
+        .card-body {
+            .card-controls > .row {
+                // Im not so sure about doing this due to properly template development
+                align-items: center;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+<section id="user-documentation">
+  <form
+    [formGroup]="form"
+    autocomplete="off"
+  >
+    <app-simple-card
+      headerText="Documento"
+    >
+      <div class="sc-row">
+        <label for="fileInput" class="row-label">
+          <div class="label-text">
+            <span>Foto documento (Frente)</span>
+          </div>
+          <div class="label-hinttext"></div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="file"
+                id="fileInput"
+                class="form-control"
+                formControlName="docFrontFile"
+                (change)="onFileChange($event, 'front')"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
+        <label for="fileInput" class="row-label">
+          <div class="label-text">
+            <span>Foto documento (Dorso)</span>
+          </div>
+          <div class="label-hinttext"></div>
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input
+                type="file"
+                id="fileInput"
+                class="form-control"
+                formControlName="docBackFile"
+                (change)="onFileChange($event, 'back')"
+              >
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-simple-card>
+  </form>
+</section>

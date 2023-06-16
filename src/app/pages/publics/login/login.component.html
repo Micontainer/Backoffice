@@ -1,0 +1,53 @@
+
+<section class="full__height">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 offset-md-3">
+        <div class="card no-hover mt-5">
+          <div class="card-body">
+            <div class="img-wrapper mb-3 d-flex justify-content-center">
+              <img class="img-fluid" alt="Mi Container" src="assets/images/mi-container__logo-512.png" />
+            </div>
+            <h4 class="card-title mb-0">Panel de Administración</h4>
+            <p class="text-muted">
+              <small>Acceso</small>
+            </p>
+            <div class="form-wrapper">
+              <form
+                [formGroup]="authForm"
+                class="mb-0"
+                autocomplete="off"
+                (ngSubmit)="submitEventHandler(authForm.value)"
+              >
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    formControlName="email"
+                  />
+                </div>
+								<div class="form-group control-wrapper">
+                  <input
+										[type]="viewPassword ? 'text' : 'password'"
+										class="form-control"
+                    placeholder="password"
+                    formControlName="password"
+                  >
+									<div class="input-trailing-items">
+									  <span class="material-icons" (click)="viewPassword = !viewPassword">
+										{{ viewPassword ? 'visibility_off' : 'visibility' }}
+									  </span>
+									</div>
+                </div>
+                <div class="form-group d-grid gap-2">
+                  <button type="submit" class="btn" color="secondary">Acceder</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

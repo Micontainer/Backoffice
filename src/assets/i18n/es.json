@@ -1,0 +1,16 @@
+{
+  "commons": {
+    "labels": {},
+    "buttons": {}
+  },
+  "httpErrors": {
+    "serverError": "Ha ocurrido un error inesperado.",
+    "defaultError": "Ha ocurrido un error inesperado."
+  },
+  "welcome": {
+    "labels": {
+      "main": "Welcome Page is an example for implementations.",
+      "info": "This is another way for labels translations."
+    }
+  }
+}

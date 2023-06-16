@@ -1,0 +1,48 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+  <div class="container-fluid">
+    <button
+      class="btn icon-text"
+      color="clear-primary"
+      id="sidebarToggle"
+      (click)="toggleSidebarClickEventHandler()"
+    >
+      <span class="material-icons">
+        menu
+      </span>
+    </button>
+    <div class="group-button d-flex">
+      <button class="button btn btn-light btn-sm icon-text mr-1" id="btnNotification">
+        <span class="material-icons">notifications</span>
+      </button>
+      <button
+        class="button btn btn-light btn-sm icon-text"
+        id="btnLogout"
+        (click)="logoutEventHandler()"
+      >
+        <span class="material-icons">logout</span>
+      </button>
+    </div>
+  </div>
+</nav> -->
+
+<!--begin::Container-->
+<div class="container-xxl d-flex align-items-center justify-content-between" id="kt_header_container">
+  <!--begin::Page title-->
+  <div class="page-title d-flex flex-column align-items-start justify-content-center flex-wrap me-lg-2 pb-5 pb-lg-0" data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', lg: '#kt_header_container'}">
+    <!--begin::Heading-->
+    <h1 class="text-dark fw-bold my-0 fs-2">{{ subSection }}</h1>
+    <!--end::Heading-->
+    <!--begin::Breadcrumb-->
+    <ul class="breadcrumb breadcrumb-line text-muted fw-bold fs-base my-1">
+      <li class="breadcrumb-item text-muted">
+        <a href="../dist/index.html" class="text-muted">{{ section }}</a>
+      </li>
+      <li class="breadcrumb-item text-dark">{{ subSection }}</li>
+    </ul>
+    <!--end::Breadcrumb-->
+  </div>
+  <!--end::Page title=-->
+  <ng-content></ng-content>
+  <!--end::Toolbar wrapper-->
+</div>
+<!--end::Container-->

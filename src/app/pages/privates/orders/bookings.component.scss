@@ -1,0 +1,12 @@
+:host { }
+
+#app-bookings {
+    .card {
+        .card-body {
+            .card-controls > .row {
+                align-items: center;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
