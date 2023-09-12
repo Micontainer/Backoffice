@@ -107,7 +107,7 @@ export class BranchBasicComponent implements OnInit {
         this.descriptionControl.setValue(branch.description);
         this.addressControl.setValue(location.description);
         this.coefficientControl.setValue(branch.coefficient);
-        this.checkedModel = (branch.status === 'active');
+        this.checkedModel = (branch.status !== 'active');
 
         this.branchRef = branch;
         this.locationRef = location;
