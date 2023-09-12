@@ -225,11 +225,11 @@ export class BranchBasicComponent implements OnInit {
   disableBranchEventHandler(): void {
     (async () => {
       try {
-        const status = (this.checked) ? 'active' : 'inactive';
+        const status = (this.checked) ? 'inactive' : 'active';
         await this.branchService.updateStatus(status, this.branchUID);
 
         let message = 'Se Activó la sucursal.';
-        if (!this.checked) {
+        if (this.checked) {
           message = 'Se Desactivó la sucursal.';
         }
 
