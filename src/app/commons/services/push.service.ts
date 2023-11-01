@@ -16,10 +16,7 @@ export class PushService extends BaseService {
 
   public async subscribe(request: PushSubscription): Promise<void> {
     try {
-      const response = await this.restService.post<any>('system/notifications/push', request);
-      console.log("R", response);
-      // this.identityService.setUserSession(response);
-
+      await this.restService.post<any>('system/notifications/push', request);
       return this.noContent();
     }
     catch (error: any) {

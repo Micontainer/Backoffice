@@ -1,20 +1,12 @@
 import { PushService } from "src/app/commons/services/push.service";
 
 
-const config = { pushKey: "BIMBkG1e5pxJayaY5pvW0FGUB2Nl7SuvRs3E83Zy2Br4yHrCu8ozGEeNAMXuDtgSk8jy7NUbZR2248pYiNaXMLY" };
+const config = { pushKey: "BOrYxQzjc8u5e4fbgotvaEp28K1vn8jLSWzqM2q-OZjYxPF68AXhaeanfQ76cTsotoUB1FrET147UIM90xQyDqQ" };
 
 async function subscribe(topic: any, pushService: PushService) {
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./assets/js/serviceWorker.js')
             .then(async (swReg: any) => {
-                // if (!('showNotification' in swReg?.prototype)) {
-                //     console.warn('Notifications aren\'t supported.');
-                //     return;
-                // }
-                // if (Notification.permission === 'denied') {
-                //     console.warn('The user has blocked notifications.');
-                //     return;
-                // }
                 const options = {
                     userVisibleOnly: true,
                     applicationServerKey: urlB64ToUint8Array(config.pushKey),
@@ -24,6 +16,7 @@ async function subscribe(topic: any, pushService: PushService) {
                     .then(async (subscription: any) => {
                         if (!subscription) {
                             console.log('No Subscription endpoint present')
+                            return;
                         }
                         await pushService.subscribe(subscription);
                     }).catch((subErr: any) => console.log("EE", subErr));

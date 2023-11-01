@@ -14,15 +14,24 @@
   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/simplebar.min.css">
   <link rel="stylesheet" href="assets/css/volt.css">
-  <link rel="manifest" href="assets/manifest.json" />
 </head>
 
 <body root>
   <script type="text/javascript">
-    self.addEventListener('push', function (event) {
-      console.log(event)
-      const message = event.data.json();
-      self.registration.showNotification(message.title, { body: message.text });
+    self.addEventListener("push", function (e) {
+      console.log("e")
+      // const dataObj = e.data.json();
+      // const notificationData = dataObj.notification;
+      // const notificationTitle = notificationData.title;
+      // const notificationOptions = {
+      //   body: notificationData.body,
+      //   icon: notificationData.image,
+      // };
+
+      // //Do some logic to fulfill the notificationOptions
+      // e.waitUntil(
+      //   self.registration.showNotification(notificationTitle, notificationOptions)
+      // );
     });
   </script>
   <script
