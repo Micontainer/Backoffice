@@ -1,5 +1,7 @@
+import { PushService } from './../../../commons/services/push.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarComponent } from 'src/app/commons/components/sidebar/sidebar.component';
+import subscribe from './service-worker';
 
 
 @Component({
@@ -12,7 +14,10 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   notifications: any[];
 
-  constructor() {
+  constructor(
+    private pushService: PushService
+  ) {
+    subscribe('news', this.pushService);
     this.notifications = new Array<any>();
   }
 
