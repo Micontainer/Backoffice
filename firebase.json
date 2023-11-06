@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "mi-container-client-app",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
