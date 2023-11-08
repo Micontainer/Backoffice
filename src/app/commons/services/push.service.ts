@@ -27,10 +27,7 @@ export class PushService extends BaseService {
 }
 
 export interface PushSubscription {
-  endpoint: string;
-  keys: {
-    [key: string]: any
-  };
+  token: string;
 }
 
 interface TokenForm {

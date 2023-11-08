@@ -18,7 +18,6 @@ import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
 
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 const app = initializeApp(environment.firebase);
 
