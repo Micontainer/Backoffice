@@ -1,9 +1,5 @@
-import { catchError } from 'rxjs';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { PushService } from './../../../commons/services/push.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarComponent } from 'src/app/commons/components/sidebar/sidebar.component';
-import { onMessage, Messaging, getToken } from '@angular/fire/messaging';
 
 @Component({
   selector: 'app-layout',
@@ -15,10 +11,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   notifications: any[];
 
-  constructor(
-    private pushService: PushService,
-    private app: Messaging
-  ) {
+  constructor() {
     this.notifications = new Array<any>();
   }
 
@@ -47,30 +40,7 @@ export class LayoutComponent implements OnInit, AfterViewInit {
     ];
   }
 
-  async ngAfterViewInit() {
-    const sw = await navigator.serviceWorker.register('../../../assets/js/firebase-message-sw.js');
-    console.log("SW", sw)
-
-    getToken(this.app, {
-      vapidKey: 'BOrYxQzjc8u5e4fbgotvaEp28K1vn8jLSWzqM2q-OZjYxPF68AXhaeanfQ76cTsotoUB1FrET147UIM90xQyDqQ',
-      serviceWorkerRegistration: sw,
-    }).then(async (token) => {
-      if (!token) { return; }
-      await this.pushService.subscribe({
-        token
-      });
-    }).catch((e) => console.log("e", e));
-
-    onMessage(this.app, (a) => {
-      console.log(a)
-    })
-    onMessage(this.app, (a) => {
-      console.log(a)
-    })
-    // this.ngMessaging.requestToken.subscribe({
-    //   next: (token) => console.log(token),
-    //   error: (error) => console.log(error)
-    // })
+  async ngAfterViewInit(): Promise<void> {
   }
 
   notificationClickEventHandler(): void {

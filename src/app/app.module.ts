@@ -13,13 +13,8 @@ import { InterceptorService } from './commons/services/interceptor.service';
 import { NotificationService } from './commons/services/notification.service';
 import { RestService } from './commons/services/rest.service';
 import { StorageService } from './commons/services/storage.service';
-import { provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { initializeApp } from 'firebase/app';
-
-import { provideMessaging, getMessaging } from '@angular/fire/messaging';
-
-const app = initializeApp(environment.firebase);
+import { PushService } from './commons/services/push.service';
 
 @NgModule({
   declarations: [
@@ -31,8 +26,6 @@ const app = initializeApp(environment.firebase);
     AppRoutingModule,
     HttpClientModule,
     InfiniteScrollModule,
-    provideFirebaseApp(() => app),
-    provideMessaging(() => getMessaging(app))
   ],
   providers: [
     IdentityService,
@@ -54,6 +47,7 @@ const app = initializeApp(environment.firebase);
       multi: true,
     },
     LoadingService,
+    PushService
   ],
   bootstrap: [AppComponent]
 })

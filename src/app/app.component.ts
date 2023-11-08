@@ -2,6 +2,7 @@ import { LoadingService } from './commons/components/loading/loading.service';
 import { Component, HostListener, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { EventService } from './commons/services/event.service';
 import { Subscription } from 'rxjs';
+import { PushService } from './commons/services/push.service';
 
 @Component({
   selector: 'body[root]',
@@ -21,10 +22,13 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
   constructor(
     private loadingService: LoadingService,
     private changeDetectorRef: ChangeDetectorRef,
+    private pushService: PushService,
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loadingSubscription = this.loadingService.onLoading.subscribe((value) => this.isLoading = value);
+    await this.pushService.requestPushToken();
+    await this.pushService.listen();
   }
 
   ngOnDestroy(): void {

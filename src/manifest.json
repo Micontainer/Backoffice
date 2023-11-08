@@ -1,6 +1,6 @@
 {
-  "name": "mi-container-client-app",
-  "short_name": "mi-container-client-app",
+  "name": "mi-container",
+  "short_name": "mi-container",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
