@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { BaseService } from "./base.service";
 import { IdentityService } from "./identity.service";
 import { RestService } from "./rest.service";
+import { Messaging, getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { environment } from "src/environments/environment";
 
 
 @Injectable()
@@ -24,6 +26,29 @@ export class PushService extends BaseService {
     }
   }
 
+  public async requestPermission() {
+    const messaging = getMessaging();
+    const sw = await navigator.serviceWorker.register('../../../assets/js/firebase-message-sw.js');
+    getToken(messaging,
+      { vapidKey: environment.firebase.vapidKey, serviceWorkerRegistration: sw }).then(
+        (currentToken) => {
+          if (currentToken) {
+            console.log("Hurraaa!!! we got the token.....");
+            console.log(currentToken);
+          } else {
+            console.log('No registration token available. Request permission to generate one.');
+          }
+        }).catch((err) => {
+          console.log('An error occurred while retrieving token. ', err);
+        });
+  }
+
+  public async listen() {
+    const messaging = getMessaging();
+    onMessage(messaging, (payload) => {
+      console.log('Message received. ', payload);
+    });
+  }
 }
 
 export interface PushSubscription {

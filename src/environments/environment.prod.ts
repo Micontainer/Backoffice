@@ -7,6 +7,7 @@ export const environment = {
     authDomain: 'mi-container.firebaseapp.com',
     messagingSenderId: '131439675803',
     measurementId: 'G-HC5779Q19N',
+    vapidKey: 'BOrYxQzjc8u5e4fbgotvaEp28K1vn8jLSWzqM2q-OZjYxPF68AXhaeanfQ76cTsotoUB1FrET147UIM90xQyDqQ',
   },
   production: true,
   apiURL: 'https://yb4we67wll.execute-api.us-east-1.amazonaws.com/qa/',

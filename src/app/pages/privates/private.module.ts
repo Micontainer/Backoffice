@@ -10,9 +10,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { PrivateRoutingModule } from "./private-routing.module";
-import { AdminsOnlyModule } from 'src/app/commons/directives/admins-only/admins-only.module';
 import { CurrencyDirective } from 'src/app/commons/directives/currency.directive';
-import { PushService } from 'src/app/commons/services/push.service';
 
 
 @NgModule({
@@ -33,8 +31,7 @@ import { PushService } from 'src/app/commons/services/push.service';
     SidebarModule,
   ],
   providers: [
-    CustomerService,
-    PushService
+    CustomerService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

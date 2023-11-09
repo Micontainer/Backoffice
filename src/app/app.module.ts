@@ -18,6 +18,7 @@ import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
 
 import { provideMessaging, getMessaging } from '@angular/fire/messaging';
+import { PushService } from './commons/services/push.service';
 
 const app = initializeApp(environment.firebase);
 
@@ -54,6 +55,7 @@ const app = initializeApp(environment.firebase);
       multi: true,
     },
     LoadingService,
+    PushService,
   ],
   bootstrap: [AppComponent]
 })
