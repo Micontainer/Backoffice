@@ -25,9 +25,10 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewChecked {
     private pushService: PushService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.loadingSubscription = this.loadingService.onLoading.subscribe((value) => this.isLoading = value);
     this.pushService.requestPermission();
+    await this.pushService.listen();
   }
 
   ngOnDestroy(): void {

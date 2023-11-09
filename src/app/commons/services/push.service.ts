@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { BaseService } from "./base.service";
-import { IdentityService } from "./identity.service";
 import { RestService } from "./rest.service";
 import { Messaging, getMessaging, getToken, onMessage } from 'firebase/messaging';
 import { environment } from "src/environments/environment";
@@ -11,7 +10,6 @@ export class PushService extends BaseService {
 
   constructor(
     private restService: RestService,
-    private identityService: IdentityService
   ) {
     super();
   }
