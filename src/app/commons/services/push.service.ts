@@ -42,6 +42,7 @@ export class PushService extends BaseService {
   }
 
   public async listen() {
+      console.log('Message listening. ');
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
       console.log('Message received. ', payload);
