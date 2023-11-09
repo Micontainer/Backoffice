@@ -31,7 +31,7 @@ export class PushService extends BaseService {
       { vapidKey: environment.firebase.vapidKey, serviceWorkerRegistration: sw }).then(
         (currentToken) => {
           if (currentToken) {
-            console.log("Hurraaa!!! we got the token.....");
+            sw.showNotification('hola', {})
             console.log(currentToken);
           } else {
             console.log('No registration token available. Request permission to generate one.');
@@ -39,6 +39,7 @@ export class PushService extends BaseService {
         }).catch((err) => {
           console.log('An error occurred while retrieving token. ', err);
         });
+        
   }
 
   public async listen() {
