@@ -18,7 +18,31 @@
 </head>
 
 <body root>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBJitduoSpYJJGtE7iBZM_hbmMhvi-Qo4g"></script>
+  <script>self.addEventListener('push', (event) => {
+      const options = {
+        body: 'This notification was generated from a push!',
+        icon: '',
+        data: {
+          dateOfArrival: Date.now(),
+          primaryKey: '2'
+        },
+        actions: [
+          {
+            action: 'explore', title: 'Explore this new world',
+            icon: ''
+          },
+          {
+            action: 'close', title: 'Close',
+            icon: ''
+          },
+        ]
+      };
+      event.waitUntil(
+        self.registration.showNotification('Title', options)
+      )
+    });</script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBJitduoSpYJJGtE7iBZM_hbmMhvi-Qo4g"></script>
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/simplebar.min.js"></script>
   <script src="assets/js/volt.js"></script>

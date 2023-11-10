@@ -8,6 +8,8 @@ import { environment } from "src/environments/environment";
 @Injectable()
 export class PushService extends BaseService {
 
+  swReg: ServiceWorkerRegistration | undefined;
+
   constructor(
     private restService: RestService,
   ) {
@@ -26,26 +28,25 @@ export class PushService extends BaseService {
 
   public async requestPermission() {
     const messaging = getMessaging();
-    const sw = await navigator.serviceWorker.register('../../../assets/js/firebase-message-sw.js');
+    this.swReg = await navigator.serviceWorker.register('../../../assets/js/firebase-message-sw.js');
     getToken(messaging,
-      { vapidKey: environment.firebase.vapidKey, serviceWorkerRegistration: sw }).then(
-        (currentToken) => {
-          if (currentToken) {
-            sw.showNotification('hola', {})
-            console.log(currentToken);
-          } else {
+      { vapidKey: environment.firebase.vapidKey, serviceWorkerRegistration: this.swReg }).then(
+        async (token) => {
+          if (!token) {
             console.log('No registration token available. Request permission to generate one.');
           }
+
+          await this.subscribe({ token });
         }).catch((err) => {
           console.log('An error occurred while retrieving token. ', err);
         });
-        
+
   }
 
   public async listen() {
-      console.log('Message listening. ');
     const messaging = getMessaging();
     onMessage(messaging, (payload) => {
+      this.swReg?.showNotification('Notification from Mi container');
       console.log('Message received. ', payload);
     });
   }
