@@ -36,6 +36,8 @@ export class PushService extends BaseService {
             console.log('No registration token available. Request permission to generate one.');
           }
 
+          console.log(token);
+
           await this.subscribe({ token });
         }).catch((err) => {
           console.log('An error occurred while retrieving token. ', err);
