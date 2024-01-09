@@ -10,6 +10,6 @@ export const environment = {
     vapidKey: 'BOrYxQzjc8u5e4fbgotvaEp28K1vn8jLSWzqM2q-OZjYxPF68AXhaeanfQ76cTsotoUB1FrET147UIM90xQyDqQ',
   },
   production: true,
-  apiURL: 'https://yb4we67wll.execute-api.us-east-1.amazonaws.com/qa/',
+  apiURL: 'https://b62a7gevef.execute-api.us-east-1.amazonaws.com/qa/',
   apiKey: 'stiX6gfd6v1J65mmmKFQu2fN7hglP1VP777v78jk',
 };
