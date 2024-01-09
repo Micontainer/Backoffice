@@ -16,6 +16,11 @@ import { BranchAreaComponent } from './area/branch-area.component';
 })
 export class BranchProfileComponent implements OnInit {
 
+  branchUID: string = '';
+  get isEdition(): boolean {
+    return !!this.branchUID;
+  }
+
   @ViewChild('routerOutlet', { read: ViewContainerRef, static: true })
   routerOutletRef!: ViewContainerRef;
 
@@ -26,38 +31,7 @@ export class BranchProfileComponent implements OnInit {
     this.routerOutletRef.createComponent(this.components.get(value));
   }
 
-  options: OptionItem[] = [
-    {
-      label: 'General',
-      component: 'basic',
-      link: '/admin/settings/branch-offices/create',
-      selected: false,
-    },
-    {
-      label: 'Horarios',
-      component: 'schedules',
-      link: '/admin/settings/branch-offices/create',
-      selected: false,
-    },
-    {
-      label: 'Contactos',
-      component: 'contacts',
-      link: '/admin/settings/branch-offices/create',
-      selected: false,
-    },
-    {
-      label: 'Edificios',
-      component: 'buildings',
-      link: '/admin/settings/branch-offices/create',
-      selected: false,
-    },
-    {
-      label: 'Area',
-      component: 'area',
-      link: '/admin/settings/branch-offices/create',
-      selected: false,
-    },
-  ];
+  options: OptionItem[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -68,6 +42,47 @@ export class BranchProfileComponent implements OnInit {
     this.components.set('contacts', BranchContactsComponent);
     this.components.set('buildings', BranchBuildingsComponent);
     this.components.set('area', BranchAreaComponent);
+
+    this.activatedRoute.queryParams.subscribe(query => {
+      this.branchUID = query['ref'] || '';
+    });
+
+    this.options = [
+      {
+        label: 'General',
+        component: 'basic',
+        link: '/admin/settings/branch-offices/create',
+        selected: false,
+      },
+      {
+        label: 'Horarios',
+        component: 'schedules',
+        link: '/admin/settings/branch-offices/create',
+        selected: false,
+        disabled: !this.isEdition,
+      },
+      {
+        label: 'Contactos',
+        component: 'contacts',
+        link: '/admin/settings/branch-offices/create',
+        selected: false,
+        disabled: !this.isEdition,
+      },
+      {
+        label: 'Edificios',
+        component: 'buildings',
+        link: '/admin/settings/branch-offices/create',
+        selected: false,
+        disabled: !this.isEdition,
+      },
+      {
+        label: 'Area',
+        component: 'area',
+        link: '/admin/settings/branch-offices/create',
+        selected: false,
+        disabled: !this.isEdition,
+      },
+    ];
   }
 
   ngOnInit(): void {

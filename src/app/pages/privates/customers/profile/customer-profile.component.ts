@@ -14,6 +14,12 @@ import { CheckComponentSelectedEventHandler } from 'src/app/commons/components/s
   styleUrls: ['./customer-profile.component.scss']
 })
 export class CustomerProfileComponent implements OnInit {
+
+  customerUID: string = '';
+  get isEdition(): boolean {
+    return !!this.customerUID;
+  }
+
   private readonly DefaultLink: string = '/admin/customers/profile';
 
   @ViewChild('routerOutlet', { read: ViewContainerRef, static: true })
@@ -26,32 +32,7 @@ export class CustomerProfileComponent implements OnInit {
     this.routerOutletRef.createComponent(this.components.get(value));
   }
 
-  options: OptionItem[] = [
-    {
-      label: 'General',
-      component: 'basic',
-      link: this.DefaultLink,
-      selected: false,
-    },
-    {
-      label: 'Autenticación',
-      component: 'user',
-      link: this.DefaultLink,
-      selected: false,
-    },
-    {
-      label: 'Autorizados',
-      component: 'authorizeds',
-      link: this.DefaultLink,
-      selected: false,
-    },
-    {
-      label: 'Historial',
-      component: 'history',
-      link: this.DefaultLink,
-      selected: false,
-    },
-  ];
+  options: OptionItem[] = [];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -60,6 +41,40 @@ export class CustomerProfileComponent implements OnInit {
     this.components.set('user', CustomerUserComponent);
     this.components.set('history', CustomerHistoryComponent);
     this.components.set('authorizeds', CustomerAuthorizedsComponent);
+
+    this.activatedRoute.queryParams.subscribe(query => {
+      this.customerUID = query['ref'] || '';
+    });
+
+    this.options = [
+      {
+        label: 'General',
+        component: 'basic',
+        link: this.DefaultLink,
+        selected: false,
+      },
+      {
+        label: 'Autenticación',
+        component: 'user',
+        link: this.DefaultLink,
+        selected: false,
+        disabled: !this.isEdition,
+      },
+      {
+        label: 'Autorizados',
+        component: 'authorizeds',
+        link: this.DefaultLink,
+        selected: false,
+        disabled: !this.isEdition,
+      },
+      {
+        label: 'Historial',
+        component: 'history',
+        link: this.DefaultLink,
+        selected: false,
+        disabled: !this.isEdition,
+      },
+    ]
   }
 
   ngOnInit(): void {

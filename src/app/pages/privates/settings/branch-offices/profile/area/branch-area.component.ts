@@ -20,12 +20,14 @@ export class BranchAreaComponent implements OnInit {
 
   columns: SimpleColumn[] = [
     { property: 'areaCoefficient', label: 'Área' },
+    { property: 'coefficient', label: 'Coeficiente' },
     { property: 'value', label: 'Valor' },
     { property: 'actions', label: 'Acciones' },
   ];
 
   form: FormGroup;
   areaCoefficientControl = new FormControl('', [Validators.required]);
+  coefficientControl = new FormControl('', [Validators.required]);
   valueControl = new FormControl('', [Validators.required]);
 
   constructor(
@@ -35,6 +37,7 @@ export class BranchAreaComponent implements OnInit {
   ) {
     this.form = new FormGroup({
       areaCoefficient: this.areaCoefficientControl,
+      coefficient: this.coefficientControl,
       value: this.valueControl,
     });
 
@@ -52,7 +55,7 @@ export class BranchAreaComponent implements OnInit {
   ngOnInit(): void {
     this.fetchCoefficients();
 
-    this.areaCoefficientControl.valueChanges.subscribe((value) => {
+    this.coefficientControl.valueChanges.subscribe((value) => {
       this.valueControl.setValue(value * this.branchCoefficient);
     })
   }
@@ -75,6 +78,7 @@ export class BranchAreaComponent implements OnInit {
     try {
       const request = {
         areaCoefficient: values.areaCoefficient,
+        coefficient: values.coefficient,
         value: values.value,
         branchUID: this.branchUID,
       }

@@ -5,4 +5,5 @@ export interface OptionItem {
   component: string;
   link: string;
   selected: boolean;
+  disabled?: boolean;
 }

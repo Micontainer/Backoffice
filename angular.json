@@ -104,13 +104,6 @@
             ],
             "scripts": []
           }
-        },
-        "deploy": {
-          "builder": "@angular/fire:deploy",
-          "options": {
-            "version": 2,
-            "browserTarget": "mi-container-client-app:build:production"
-          }
         }
       }
     }

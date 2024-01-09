@@ -107,7 +107,7 @@ export class BranchBasicComponent implements OnInit {
         this.descriptionControl.setValue(branch.description);
         this.addressControl.setValue(location.description);
         this.coefficientControl.setValue(branch.coefficient);
-        this.checkedModel = (branch.status !== 'active');
+        this.checkedModel = (branch.status === 'active');
 
         this.branchRef = branch;
         this.locationRef = location;
@@ -225,11 +225,11 @@ export class BranchBasicComponent implements OnInit {
   disableBranchEventHandler(): void {
     (async () => {
       try {
-        const status = (this.checked) ? 'inactive' : 'active';
+        const status = (this.checked) ? 'active' : 'inactive';
         await this.branchService.updateStatus(status, this.branchUID);
 
         let message = 'Se Activó la sucursal.';
-        if (this.checked) {
+        if (!this.checked) {
           message = 'Se Desactivó la sucursal.';
         }
 

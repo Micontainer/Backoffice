@@ -64,6 +64,7 @@ export class BranchOfficesComponent implements OnInit {
         }
 
         await this.branchOfficeService.updateStatus('trash', data.uid);
+        await this.onInit();
 
         this.notificationService.show('Se eliminó la sucursal');
 

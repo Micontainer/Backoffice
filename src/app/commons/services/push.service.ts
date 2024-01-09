@@ -42,7 +42,6 @@ export class PushService extends BaseService {
         }).catch((err) => {
           console.log('An error occurred while retrieving token. ', err);
         });
-
   }
 
   public async listen() {

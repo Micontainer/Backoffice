@@ -101,7 +101,6 @@ export class SpaceService extends BaseService {
       priceOptions.storageCoefficient,
       priceOptions.storageDimensionM2,
     ];
-    console.log(collector);
     return +collector.reduce((last, current) => last * current).toFixed(2);
   }
   

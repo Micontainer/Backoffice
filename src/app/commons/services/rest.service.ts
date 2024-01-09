@@ -42,8 +42,6 @@ export class RestService {
     return httpOptions;
   }
 
-
-
   post<T>(endpoint: string, payload: any, multipart?: boolean): Promise<T> {
     return new Promise((resolve, reject) => {
       this.loadingService.show();
@@ -68,7 +66,7 @@ export class RestService {
         // Angular http client methods returns an Observable that either completes automatically after the first notification or errors
         // Thats why I reset the service in this and finally clause on sucessCallback instead using complete callback from subscription
         this.reset();
-        reject(new Error(error.error.message));
+        reject(new Error(error.error.payload));
       }
 
       this.http.post(this.urlComposer(endpoint), payload, this.getOptions(multipart)).subscribe({
@@ -100,7 +98,7 @@ export class RestService {
 
       const errorCallback = (error: HttpErrorResponse) => {
         this.reset();
-        reject(new Error(error.error.message));
+        reject(new Error(error.error.payload));
       }
 
       this.http.get(this.urlComposer(endpoint), this.getHttpOptions()).subscribe({
@@ -132,7 +130,7 @@ export class RestService {
 
       const errorCallback = (error: HttpErrorResponse) => {
         this.reset();
-        reject(new Error(error.error.message));
+        reject(new Error(error.error.payload));
       }
 
       this.http.patch(this.urlComposer(endpoint), payload, this.getOptions(multipart)).subscribe({
@@ -164,7 +162,7 @@ export class RestService {
 
       const errorCallback = (error: HttpErrorResponse) => {
         this.reset();
-        reject(new Error(error.error.message));
+        reject(new Error(error.error.payload));
       }
 
       this.http.put(this.urlComposer(endpoint), payload, this.getOptions(multipart)).subscribe({
@@ -192,7 +190,7 @@ export class RestService {
 
       const errorCallback = (error: HttpErrorResponse) => {
         this.reset();
-        reject(new Error(error.error.message));
+        reject(new Error(error.error.payload));
       }
 
       this.http.delete(this.urlComposer(endpoint), this.getHttpOptions()).subscribe({

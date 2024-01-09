@@ -6,7 +6,7 @@
           <div class="label-text">
             <span>Área (m2)</span>
           </div>
-          <div class="label-hinttext">Área expresada en m2.</div>
+          <div class="label-hinttext">Cantidad de m2</div>
         </label>
         <div class="row-column">
           <div class="column-container">
@@ -18,11 +18,27 @@
         </div>
       </div>
       <div class="sc-row">
+        <label for="coefficientInput" class="row-label">
+          <div class="label-text">
+            <span>Coefficiente</span>
+          </div>
+          <!-- <div class="label-hinttext">Coeficiente</div> -->
+        </label>
+        <div class="row-column">
+          <div class="column-container">
+            <div class="control-wrapper">
+              <input type="number" id="coefficientInput" class="form-control" formControlName="coefficient">
+              <div class="input-trailing-items"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sc-row">
         <label for="valueInput" class="row-label">
           <div class="label-text">
-            <span>Valor</span>
+            <span>Valor por m2</span>
           </div>
-          <div class="label-hinttext">Valor de Base: <span color="primary">{{branchCoefficient | currency}}</span></div>
+          <div class="label-hinttext">Valor base: <span color="primary">{{branchCoefficient | currency}}</span></div>
         </label>
         <div class="row-column">
           <div class="column-container">
@@ -58,6 +74,7 @@
     <ng-template #rows>
       <ng-container *ngFor="let row of coefficients">
         <div class="stx-row">{{row.areaCoefficient}} m2</div>
+        <div class="stx-row">{{row.coefficient}}</div>
         <div class="stx-row">{{row.value | currency}}</div>
         <div class="stx-row">
           <div class="stx-row-action">

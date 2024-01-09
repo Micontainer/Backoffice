@@ -16,8 +16,6 @@ import { StorageService } from './commons/services/storage.service';
 import { environment } from '../environments/environment';
 import { initializeApp } from 'firebase/app';
 
-import { PushService } from './commons/services/push.service';
-
 const app = initializeApp(environment.firebase);
 
 @NgModule({
@@ -51,7 +49,6 @@ const app = initializeApp(environment.firebase);
       multi: true,
     },
     LoadingService,
-    PushService,
   ],
   bootstrap: [AppComponent]
 })

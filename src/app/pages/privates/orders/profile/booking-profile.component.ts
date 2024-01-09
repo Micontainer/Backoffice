@@ -13,6 +13,7 @@ import { CheckComponentSelectedEventHandler } from 'src/app/commons/components/s
 })
 export class BookingProfileComponent implements OnInit {
   private readonly DefaultLink: string = '/admin/orders/profile';
+  orderUID: string = '';
 
   @ViewChild('routerOutlet', { read: ViewContainerRef, static: true })
   routerOutletRef!: ViewContainerRef;
@@ -24,26 +25,37 @@ export class BookingProfileComponent implements OnInit {
     this.routerOutletRef.createComponent(this.components.get(value));
   }
 
-  options: OptionItem[] = [
-    {
-      label: 'General',
-      component: 'basic',
-      link: this.DefaultLink,
-      selected: false,
-    },
-    {
-      label: 'Facturas',
-      component: 'invoices',
-      link: this.DefaultLink,
-      selected: false,
-    },
-  ];
+  get isEdition(): boolean {
+    return !!this.orderUID;
+  }
+
+  options: OptionItem[] = []
 
   constructor(
     private activatedRoute: ActivatedRoute,
   ) {
     this.components.set('basic', BookingBasicComponent);
     this.components.set('invoices', BookingInvoicesComponent);
+
+    this.activatedRoute.queryParams.subscribe(query => {
+      this.orderUID = query['ref'] || '';
+    });
+
+    this.options = [
+      {
+        label: 'General',
+        component: 'basic',
+        link: this.DefaultLink,
+        selected: false,
+      },
+      {
+        label: 'Facturas',
+        component: 'invoices',
+        link: this.DefaultLink,
+        selected: false,
+        disabled: !this.isEdition,
+      },
+    ];
   }
 
   ngOnInit(): void {

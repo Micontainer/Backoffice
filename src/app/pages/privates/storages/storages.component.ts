@@ -26,8 +26,7 @@ export class StoragesComponent implements OnInit {
   colorStates: ColorState[] = [
     { label: 'Ocupado', state: 'busy', },
     { label: 'Reservado', state: 'reserved', },
-    { label: 'Disponibles', state: 'available', },
-    { label: 'Pendientes', state: 'pending', },
+    { label: 'Disponible', state: 'available', },
     { label: 'No Disponible', state: 'unavailable', },
   ];
 

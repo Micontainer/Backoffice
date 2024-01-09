@@ -4,6 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { SettingsComponent } from './settings.component';
 import { AdminsOnlyModule } from 'src/app/commons/directives/admins-only/admins-only.module';
+import { BranchOfficeService } from 'src/app/commons/services/branch-office.service';
+import { FileService } from 'src/app/commons/services/file.service';
+import { ShapeService } from 'src/app/commons/services/shape.service';
+import { UserService } from 'src/app/commons/services/user.service';
 
 
 @NgModule({
@@ -40,6 +44,11 @@ import { AdminsOnlyModule } from 'src/app/commons/directives/admins-only/admins-
     ]),
     AdminsOnlyModule,
   ],
-  providers: [],
+  providers: [
+    BranchOfficeService,
+    ShapeService,
+    FileService,
+    UserService,
+  ],
 })
 export class SettingsModule { }

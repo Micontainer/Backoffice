@@ -13,7 +13,7 @@
             [queryParams]="{page: option.component}"
             queryParamsHandling="merge"
             color="primary"
-            [ngClass]="{'active': option.selected}"
+            [ngClass]="{'active': option.selected, 'disabled': option.disabled }"
           >{{option.label}}</a>
         </ng-template>
       </app-simple-menu>

@@ -8,16 +8,13 @@
               <h5 class="mb-0">{{source.description}}</h5>
             </div>
             <ng-container *ngFor="let level of levels">
-              <div class="level">
+              <div class="level" *ngIf="level.storages.length">
                 <div class="header">
                   <p class="mb-0">{{level.description}}</p>
                 </div>
                 <ng-container *ngFor="let storage of level.storages">
-                  <div
-                    class="storage"
-                    [title]="storage.description+' - '+storage.dimensionsM2+'mt2'"
-                    [attr.status]="storage.status"
-                  >{{storage.dimensionsM2}}</div>
+                  <div class="storage" [title]="storage.description+' - '+storage.dimensionsM2+'mt2'"
+                    [attr.status]="storage.status">{{storage.dimensionsM2}}</div>
                 </ng-container>
               </div>
             </ng-container>

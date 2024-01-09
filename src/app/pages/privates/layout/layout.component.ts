@@ -1,5 +1,7 @@
+import { PushService } from './../../../commons/services/push.service';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { SidebarComponent } from 'src/app/commons/components/sidebar/sidebar.component';
+
 
 @Component({
   selector: 'app-layout',
@@ -11,8 +13,11 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   notifications: any[];
 
-  constructor() {
+  constructor(
+    private pushService: PushService,
+  ) {
     this.notifications = new Array<any>();
+    this.startPushMessages();
   }
 
   ngOnInit(): void {
@@ -44,5 +49,10 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   notificationClickEventHandler(): void {
     this.notificationsSidebar.show(false);
+  }
+
+  async startPushMessages(): Promise<void> {
+    await this.pushService.requestPermission();
+    await this.pushService.listen()
   }
 }

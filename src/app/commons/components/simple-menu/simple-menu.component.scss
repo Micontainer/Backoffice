@@ -19,6 +19,10 @@
     background: var(--color-primary) !important;
     color: white !important;
   }
+  
+  .list-group-item.disabled {
+    color: grey !important;
+  }
 
   .options {
     // margin-bottom: 20px;
@@ -42,6 +46,10 @@
 
       &:not(:last-child) {
         margin-right: 8px;
+      }
+
+      &.disabled {
+        color: red;
       }
 
       &.active {

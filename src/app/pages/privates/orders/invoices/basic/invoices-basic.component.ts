@@ -31,8 +31,11 @@ export class InvoicesBasicComponent implements OnInit {
     label: 'Pendiente',
     value: 'pending',
   }, {
-    label: 'Aprobada',
-    value: 'approved',
+    label: 'Pagada',
+    value: 'payed',
+  }, {
+    label: 'Vencida',
+    value: 'expired',
   }, {
     label: 'Cancelada',
     value: 'deny',

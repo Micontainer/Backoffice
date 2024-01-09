@@ -151,7 +151,7 @@ export class SpaceBasicComponent implements OnInit, AfterViewInit {
 
         this.coefficients = this.areaCoefficients?.coefficients?.map((coefficient: any) => {
           return {
-            label: `${coefficient.areaCoefficient} - $${coefficient.value}`,
+            label: `${coefficient.areaCoefficient} m2 - ${coefficient.coefficient} - $${coefficient.value}`,
             value: coefficient.uid,
           } as SelectOptions;
         }) || [];
@@ -241,7 +241,7 @@ export class SpaceBasicComponent implements OnInit, AfterViewInit {
       branchOfficeCoefficient: this.branchCoefficient.coefficient,
       buildingCoefficient: this.buildingCoefficient.coefficient,
       levelCoefficient: this.levelCoefficient.coefficient,
-      storageCoefficient: coefficientM2.areaCoefficient,
+      storageCoefficient: coefficientM2.coefficient,
       storageDimensionM2: +this.dimensionsM2Control.value,
     }
     this.priceControl.setValue(this.spaceService.priceCalculation(purchaseOptions));
