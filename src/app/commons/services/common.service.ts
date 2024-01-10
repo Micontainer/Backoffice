@@ -62,6 +62,16 @@ export class CommonService extends BaseService {
       return this.error(error);
     }
   }
+
+  async fetchConfigurationTotals(): Promise<any> {
+    try {
+      const rows = await this.restService.get<any>('configuration/totals');
+      return this.ok(rows);
+    }
+    catch (error: any) {
+      return this.error(error);
+    }
+  }
 }
 
 export interface StorageBoard {

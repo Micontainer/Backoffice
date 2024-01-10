@@ -1,13 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
 import { SettingsComponent } from './settings.component';
 import { AdminsOnlyModule } from 'src/app/commons/directives/admins-only/admins-only.module';
-import { BranchOfficeService } from 'src/app/commons/services/branch-office.service';
-import { FileService } from 'src/app/commons/services/file.service';
-import { ShapeService } from 'src/app/commons/services/shape.service';
-import { UserService } from 'src/app/commons/services/user.service';
+import { CommonService } from 'src/app/commons/services/common.service';
+import { NotificationService } from 'src/app/commons/services/notification.service';
 
 
 @NgModule({
@@ -45,10 +42,8 @@ import { UserService } from 'src/app/commons/services/user.service';
     AdminsOnlyModule,
   ],
   providers: [
-    BranchOfficeService,
-    ShapeService,
-    FileService,
-    UserService,
+    CommonService,
+    NotificationService,
   ],
 })
 export class SettingsModule { }
